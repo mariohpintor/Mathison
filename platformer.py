@@ -30,8 +30,8 @@ while True:
 
 	#screen.fill((204,255,255))
 	screen.blit(fondo,(0,0))
-	game.run()
-	#level0.run()
+	#game.run()
+	level0.run()
 
 	pygame.display.update()
 	clock.tick(60)	
