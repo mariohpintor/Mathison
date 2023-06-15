@@ -24,7 +24,10 @@ class Ecuacion(pygame.sprite.Sprite):
 			respuesta = round(b-a,2)
 		elif nivel == 1:
 			operacion = 'x'
-			respuesta = round(b/a,2)	
+			respuesta = round(b/a,2)
+		elif nivel == 3:
+			operacion = '/'
+			respuesta = round(a/b,2)		
 		self.texto = str(a) +' ' +operacion +' ? ' + ' = ' + str(b)
 		
 		return respuesta

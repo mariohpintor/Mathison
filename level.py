@@ -7,10 +7,13 @@ from respuestas import Respuestas
 #from terminar import Terminar
 
 class Level:
-	def __init__(self, level_data,surface,dificulty):
+	def __init__(self, level_data,surface,current_level,create_overworld):
 		self.display_surface = surface
-		self.setup_level(level_data,dificulty)
+		self.setup_level(level_data,current_level)
 		self.world_shift = 0
+		self.current_level = current_level
+		self.new_max_level = 2
+		self.create_overworld = create_overworld
 
 	def setup_level(self,layout,level):
 		i = 0
@@ -95,8 +98,16 @@ class Level:
 			if sprite.rect.colliderect(player.rect):
 				sprite.revisar(self.ecuacion_sprite.respuesta_correcta)
 
+	def input(self):
+		keys = pygame.key.get_pressed()
+		if keys[pygame.K_RETURN]:
+			self.create_overworld(self.current_level,self.new_max_level)
+		if keys[pygame.K_ESCAPE]:
+			self.create_overworld(self.current_level,0)
+			
 
 	def run(self):
+		self.input()
 		self.tiles.update(self.world_shift)
 		self.tiles.draw(self.display_surface)
 		self.scroll_x()
