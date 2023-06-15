@@ -6,16 +6,25 @@ from overworld import Overworld
 class Game:
 	def __init__(self):
 		self.max_level = 2
-		self.overworld = Overworld(0,self.max_level,screen)
+		self.overworld = Overworld(0,self.max_level,screen,self.create_level)
+		self.status = 'overworld'
+	
+	def create_level(self,current_level):
+		self.level = Level(level_map0,screen,current_level)
+		self.status = 'level'
 
 	def run(self):
-		self.overworld.run()	
+		if self.status == 'overworld':
+			self.overworld.run()
+		else:
+			self.level.run()
+		#self.level.run()	
 
 pygame.init()
 pygame.display.set_caption("Mathison begins")
 screen = pygame.display.set_mode((screen_width,screen_height))
 clock = pygame.time.Clock()
-level0 = Level(level_map0,screen,number_level0)
+#level0 = Level(level_map0,screen,number_level0)
 
 game = Game()
 
@@ -30,8 +39,8 @@ while True:
 
 	#screen.fill((204,255,255))
 	screen.blit(fondo,(0,0))
-	#game.run()
-	level0.run()
+	game.run()
+	#level0.run()
 
 	pygame.display.update()
 	clock.tick(60)	
