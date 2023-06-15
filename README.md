@@ -9,3 +9,7 @@ compilar y ejecutar el archivo 'platformer.py'
 
 #version inicial
 compilar y ejecutar el archivo 'mathison.py'
+
+#como jugar
+Con las teclas flecha derecha e izquierda el jugador se desplaza a la dirección respectiva
+Con la tecla space el jugador se da un salto
