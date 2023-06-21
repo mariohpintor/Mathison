@@ -26,4 +26,12 @@ class Respuestas(pygame.sprite.Sprite):
 		self.image.blit(calificacion,[10,0])   		
 
 	def update(self, x_shift):
+		self.mitexto = self.main_font.render(self.texto, True,self.color)
+        #rect and image
 		self.rect.x += x_shift	
+		self.W = self.mitexto.get_width()
+		self.H = self.mitexto.get_height()
+		self.image = pygame.image.load("imagenes/sheet.png").convert_alpha()
+		self.image = pygame.transform.scale(self.image, (self.W + 20,self.H))		
+		self.image.blit(self.mitexto,[10,0])
+

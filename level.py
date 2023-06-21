@@ -18,6 +18,7 @@ class Level:
 	def setup_level(self,layout,level):
 		i = 0
 		respuesta =[]
+		self.level = level
 		self.tiles = pygame.sprite.Group()
 		self.player = pygame.sprite.GroupSingle()
 		self.ecuacion = pygame.sprite.GroupSingle()
@@ -33,10 +34,10 @@ class Level:
 					tile = Tile((x,y),tile_size)
 					self.tiles.add(tile)			
 				if cell == 'P':    
-					player_sprite = Player((x,y))
+					player_sprite = Player([x,y])
 					self.player.add(player_sprite)
 				if cell == 'E':
-					self.ecuacion_sprite = Ecuacion((x,y),tile_size,level)
+					self.ecuacion_sprite = Ecuacion((x,y),tile_size,self.level)
 					self.ecuacion.add(self.ecuacion_sprite)
 					respuesta.append(self.ecuacion_sprite.respuesta_correcta)
 					#print('E',respuesta)
@@ -97,6 +98,12 @@ class Level:
 		for sprite in self.respuestas.sprites():
 			if sprite.rect.colliderect(player.rect):
 				sprite.revisar(self.ecuacion_sprite.respuesta_correcta)
+				nueva_respuesta = self.ecuacion_sprite.generator(self.level)
+				for sprite in self.respuestas.sprites():
+					sprite.texto = str(random.randint(1,10))
+				sprite = random.choice(self.respuestas.sprites())
+				sprite.texto = 	str(nueva_respuesta)
+
 
 	def input(self):
 		keys = pygame.key.get_pressed()
@@ -117,6 +124,7 @@ class Level:
 		self.vertical_movement_collision()
 		self.player.draw(self.display_surface)
         
+		self.ecuacion.update()
 		self.ecuacion.draw(self.display_surface)
 		self.respuestas.update(self.world_shift)
 		self.collision_respuestas()	
