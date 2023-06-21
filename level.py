@@ -4,7 +4,7 @@ from settings import tile_size, screen_width
 from player import Player
 from ecuacion import Ecuacion
 from respuestas import Respuestas
-#from terminar import Terminar
+
 
 class Level:
 	def __init__(self, level_data,surface,current_level,create_overworld):
@@ -16,14 +16,13 @@ class Level:
 		self.create_overworld = create_overworld
 
 	def setup_level(self,layout,level):
-		i = 0
-		respuesta =[]
+		#i = 0
+		#respuesta =[]
 		self.level = level
 		self.tiles = pygame.sprite.Group()
 		self.player = pygame.sprite.GroupSingle()
 		self.ecuacion = pygame.sprite.GroupSingle()
 		self.respuestas = pygame.sprite.Group()
-		self.terminar = pygame.sprite.GroupSingle()
 
 		for row_index, row in enumerate(layout):
 			for col_index, cell in enumerate(row):
@@ -39,20 +38,20 @@ class Level:
 				if cell == 'E':
 					self.ecuacion_sprite = Ecuacion((x,y),tile_size,self.level)
 					self.ecuacion.add(self.ecuacion_sprite)
-					respuesta.append(self.ecuacion_sprite.respuesta_correcta)
-					#print('E',respuesta)
+					#respuesta.append(self.ecuacion_sprite.respuesta_correcta)
 				if cell == 'R':
+					respuesta_sprite = Respuestas((x,y),tile_size,random.randint(1,10))
+					'''
 					if i < 3:
 						respuesta.append(random.randint(1,10))
 					answer = random.choice(respuesta)	
 					respuesta_sprite = Respuestas((x,y),tile_size,answer)
 					i+=1
 					respuesta.remove(answer)
-					#print('R',respuesta)
+					'''
 					self.respuestas.add(respuesta_sprite)
-				#if cell == 'T':
-				   #terminar_sprite = Terminar((x,y),tile_size)
-				   #self.terminar.add(terminar_sprite)	
+		sprite = random.choice(self.respuestas.sprites())
+		sprite.texto = 	str(self.ecuacion_sprite.respuesta_correcta)
 
 	def scroll_x(self):
 		player = self.player.sprite
@@ -69,40 +68,43 @@ class Level:
 			self.world_shift = 0
 			player.speed = 8
 
-	def horizontal_movement_collision(self):
+	def horizontal_movement_collision(self,type_sprites):
 		player = self.player.sprite
 		player.rect.x += player.direction.x*player.speed
 
-		for sprite in self.tiles.sprites():
+		for sprite in type_sprites:
 			if sprite.rect.colliderect(player.rect) and player.rect.y > sprite.rect.y:
 				if player.direction.x < 0:
 					player.rect.left = sprite.rect.right
 				elif player.direction.x > 0:
-				    player.rect.right = sprite.rect.left	
+				    player.rect.right = sprite.rect.left
+				#keys = pygame.key.get_pressed()
+				if type_sprites == self.respuestas.sprites():
+					self.collision_respuestas(sprite)					    	
 	
-	def vertical_movement_collision(self):
+	def vertical_movement_collision(self,type_sprites):
 		player = self.player.sprite
 		player.apply_gravity()
 
-		for sprite in self.tiles.sprites():
+		for sprite in type_sprites:
 			if sprite.rect.colliderect(player.rect):
 				if player.direction.y > 0:
 					player.rect.bottom = sprite.rect.top
 					player.direction.y = 0
 				elif player.direction.y < 0:
 				    player.rect.top = sprite.rect.bottom
-				    player.direction.y = 0	
+				    player.direction.y = 0
+				#keys = pygame.key.get_pressed()    
+				if type_sprites == self.respuestas.sprites():
+					self.collision_respuestas(sprite)	
 
-	def collision_respuestas(self):
-		player = self.player.sprite
+	def collision_respuestas(self,sprite):
+		sprite.revisar(self.ecuacion_sprite.respuesta_correcta)
+		nueva_respuesta = self.ecuacion_sprite.generator(self.level)
 		for sprite in self.respuestas.sprites():
-			if sprite.rect.colliderect(player.rect):
-				sprite.revisar(self.ecuacion_sprite.respuesta_correcta)
-				nueva_respuesta = self.ecuacion_sprite.generator(self.level)
-				for sprite in self.respuestas.sprites():
-					sprite.texto = str(random.randint(1,10))
-				sprite = random.choice(self.respuestas.sprites())
-				sprite.texto = 	str(nueva_respuesta)
+			sprite.texto = str(random.randint(1,10))
+		sprite = random.choice(self.respuestas.sprites())	
+		sprite.texto = 	str(nueva_respuesta)
 
 
 	def input(self):
@@ -120,14 +122,16 @@ class Level:
 		self.scroll_x()
 
 		self.player.update()
-		self.horizontal_movement_collision()
-		self.vertical_movement_collision()
+		self.horizontal_movement_collision(self.tiles.sprites())
+		self.vertical_movement_collision(self.tiles.sprites())
+		self.horizontal_movement_collision(self.respuestas.sprites())
+		self.vertical_movement_collision(self.respuestas.sprites())
 		self.player.draw(self.display_surface)
         
 		self.ecuacion.update()
 		self.ecuacion.draw(self.display_surface)
 		self.respuestas.update(self.world_shift)
-		self.collision_respuestas()	
+		#self.collision_respuestas()	
 		self.respuestas.draw(self.display_surface)
 
 		#self.terminar.draw(self.display_surface)	

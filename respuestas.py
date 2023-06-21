@@ -4,6 +4,7 @@ class Respuestas(pygame.sprite.Sprite):
 	def __init__(self,pos,size,respuesta):
 		super().__init__()
 		#texto
+		self.pos = pos
 		self.texto = str(respuesta)
 		self.color = 'black'
 		self.main_font = pygame.font.SysFont('arial', size - 7)

@@ -1,4 +1,4 @@
-level_map0 = [
+'''level_map0 = [
 '                              ',
 '           E                  ',
 '                              ',
@@ -9,7 +9,20 @@ level_map0 = [
 ' XX    X  XXXX    XX  XX      ',
 '       X  XXXX    XX  XXX   XX',
 'P   XXXX  XXXXXX  XX  XXXX  XX',
-'XXXXXXXX  XXXXXX  XX  XXXX  XX']
+'XXXXXXXX  XXXXXX  XX  XXXX  XX']'''
+
+level_map0 = [
+'                                        ',
+'           E                            ',
+'                                        ',
+' XX R  X        X     XX  R             ',
+' XX        R                            ',
+' XXXX  R      XX  R      XX          XXX',
+' XXXX       XX                 R        ',
+' XX    X  XXXX    XX  XX       XX XX    ',
+'       X  XXXX    XX  XXX   XX XX XX    ',
+'P   XXXX  XXXXXX  XX  XXXX  XX XX XX    ',
+'XXXXXXXX  XXXXXX  XX  XXXX  XX XX XX    ']
 
 level_map1 = [
 '                              ',
