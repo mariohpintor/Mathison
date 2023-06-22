@@ -12,16 +12,16 @@
 'XXXXXXXX  XXXXXX  XX  XXXX  XX']'''
 
 level_map0 = [
-'                                        ',
+'P                                       ',
 '           E                            ',
-'                                        ',
-' XX R  X        X     XX  R             ',
-' XX        R                            ',
+' RR             R     R                 ',
+' XX    X        X     XX  R             ',
+' XX R      R                         R  ',
 ' XXXX  R      XX  R      XX          XXX',
-' XXXX       XX                 R        ',
+' XXXX       XX         R       R   R    ',
 ' XX    X  XXXX    XX  XX       XX XX    ',
-'       X  XXXX    XX  XXX   XX XX XX    ',
-'P   XXXX  XXXXXX  XX  XXXX  XX XX XX    ',
+'    R  X  XXXX    XX  XXX   XX XX XX    ',
+'    XXXX  XXXXXX  XX  XXXX  XX XX XX    ',
 'XXXXXXXX  XXXXXX  XX  XXXX  XX XX XX    ']
 
 level_map1 = [
@@ -38,7 +38,7 @@ level_map1 = [
 'XXXXXXXX  XXXXXX  XX  XXXX  XX']
 
 tile_size = 64
-screen_width = 1200
+screen_width = tile_size*18
 screen_height = len(level_map0)*tile_size
 
 #tipo de ecuacion relativo al nivel

@@ -10,6 +10,7 @@ class Player(pygame.sprite.Sprite):
 		self.image = self.animations['run'][self.frame_index]
 		self.image = pygame.transform.scale(self.image, (48,96))
 		self.rect = self.image.get_rect(topleft = pos)
+		self.pos = pos
 		
 
 		#player movement
