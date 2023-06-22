@@ -16,8 +16,6 @@ class Level:
 		self.create_overworld = create_overworld
 
 	def setup_level(self,layout,level):
-		contador = 0
-		self.respuestas_positions =[]
 		self.level = level
 		self.tiles = pygame.sprite.Group()
 		self.player = pygame.sprite.GroupSingle()
@@ -33,20 +31,16 @@ class Level:
 					tile = Tile((x,y),tile_size)
 					self.tiles.add(tile)			
 				if cell == 'P':    
-					player_sprite = Player([x,y])
+					player_sprite = Player((x,y))
 					self.player.add(player_sprite)
 				if cell == 'E':
 					self.ecuacion_sprite = Ecuacion((x,y),tile_size,self.level)
 					self.ecuacion.add(self.ecuacion_sprite)
 					#respuesta.append(self.ecuacion_sprite.respuesta_correcta)
 				if cell == 'R':
-					self.respuestas_positions.append((x,y))
-					if ((x > player_sprite.rect.centerx and x < screen_width) or x < player_sprite.rect.centerx) and contador < 4:
-						respuesta_sprite = Respuestas((x,y),tile_size,random.randint(1,10))
-						contador += 1
+					respuesta_sprite = Respuestas((x,y),tile_size,1)
 
-					self.respuestas.add(respuesta_sprite)
-		print(self.respuestas_positions)			
+					self.respuestas.add(respuesta_sprite)			
 		sprite = random.choice(self.respuestas.sprites())
 		sprite.texto = 	str(self.ecuacion_sprite.respuesta_correcta)
 
@@ -54,15 +48,12 @@ class Level:
 		player = self.player.sprite
 		player_x = player.rect.centerx
 		direction_x = player.direction.x
-		self.righttimes = 0
 		if player_x < screen_width/4 and direction_x < 0:
 			self.world_shift = 8
 			player.speed = 0
-			self.righttimes += 1
 		elif player_x > screen_width - (screen_width/4) and direction_x > 0:
 			self.world_shift = -8
-			player.speed = 0
-			self.righttimes += -1		    	
+			player.speed = 0	    	
 		else:
 			self.world_shift = 0
 			player.speed = 8
@@ -77,9 +68,8 @@ class Level:
 					player.rect.left = sprite.rect.right
 				elif player.direction.x > 0:
 				    player.rect.right = sprite.rect.left
-				#keys = pygame.key.get_pressed()
 				if type_sprites == self.respuestas.sprites():
-					self.collision_respuestas(sprite,player)					    	
+					self.collision_respuestas(sprite)					    	
 	
 	def vertical_movement_collision(self,type_sprites):
 		player = self.player.sprite
@@ -95,31 +85,21 @@ class Level:
 				    player.direction.y = 0
 				#keys = pygame.key.get_pressed()    
 				if type_sprites == self.respuestas.sprites():
-					self.collision_respuestas(sprite,player)	
+					self.collision_respuestas(sprite)	
 
-	def collision_respuestas(self,sprite,player):
+	def collision_respuestas(self,sprite):
 		sprite.revisar(self.ecuacion_sprite.respuesta_correcta)
-		#cambiamos posiciones de respuestas	
-		contador = 0
-		changes = []
-		for new_position in self.respuestas_positions:	
-			if ((new_position[0] > player.rect.centerx +8*self.righttimes and new_position[0] < screen_width+8*self.righttimes) or (new_position[0] < player.rect.centerx+8*self.righttimes and new_position[0]>8*self.righttimes)) and contador < 4:
-				changes.append(new_position)
-				contador += 1
-		print(changes)
-		#actualizamos texto 
+		respuetas_temporal = []
 		nueva_respuesta = self.ecuacion_sprite.generator(self.level)
-		contador = 0
+
 		for sprite in self.respuestas.sprites():
-			sprite.texto = str(random.randint(1,10))
-			sprite.pos = changes[contador]
-			contador += 1
-		sprite = random.choice(self.respuestas.sprites())	
+			if 0 < sprite.rect.x and sprite.rect.x < screen_width:
+				sprite.texto = str(2)
+				respuetas_temporal.append(sprite)
+
+		sprite = random.choice(respuetas_temporal)	
 		sprite.texto = 	str(nueva_respuesta)		
 			
-
-
-
 
 	def input(self):
 		keys = pygame.key.get_pressed()
