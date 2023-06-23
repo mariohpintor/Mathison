@@ -4,7 +4,8 @@ class Respuestas(pygame.sprite.Sprite):
 	def __init__(self,pos,size,respuesta):
 		super().__init__()
 		#texto
-		self.pos = pos
+		#self.pos = pos
+		self.size = size
 		self.texto = str(respuesta)
 		self.color = 'black'
 		self.main_font = pygame.font.SysFont('arial', size - 7)
@@ -17,14 +18,17 @@ class Respuestas(pygame.sprite.Sprite):
 		self.image = pygame.transform.scale(self.image, (self.W + 20,self.H))		
 		self.image.blit(self.mitexto,[10,0])
 		
-	def revisar(self,respuesta_correcta):
+
+		# (self.W + 20,self.H)
+	def revisar(self,respuesta_correcta,surface):
 		if respuesta_correcta ==float(self.texto):
 			calificacion = pygame.image.load("imagenes/paloma.png").convert_alpha()
-			calificacion = pygame.transform.scale(calificacion, (self.W + 20,self.H))
+			calificacion = pygame.transform.scale(calificacion,(self.size,self.size))
+			print(self.texto)
 		else:
 			calificacion = pygame.image.load("imagenes/error.png").convert_alpha()
-			calificacion = pygame.transform.scale(calificacion, (self.W + 20,self.H))					
-		self.image.blit(calificacion,[10,0])   		
+			calificacion = pygame.transform.scale(calificacion,(self.size,self.size))					
+		surface.blit(calificacion,(4*64,64))   		
 
 	def update(self, x_shift):
 		self.mitexto = self.main_font.render(self.texto, True,self.color)

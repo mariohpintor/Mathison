@@ -17,7 +17,7 @@ level_map0 = [
 ' R              R     R                 ',
 ' XX    X        X     XX  R             ',
 ' XX R      R                         R  ',
-' XXXX  R      XX  R      XX          XXX',
+' XXXX         XX  R      XX          XXX',
 ' XXXX       XX         R       R   R    ',
 ' XX    X  XXXX    XX  XX       XX XX    ',
 '       X  XXXX    XX  XXX   XX XX XX    ',

@@ -68,7 +68,8 @@ class Level:
 					player.rect.left = sprite.rect.right
 				elif player.direction.x > 0:
 				    player.rect.right = sprite.rect.left
-				if type_sprites == self.respuestas.sprites():
+				keys = pygame.key.get_pressed()
+				if type_sprites == self.respuestas.sprites() and keys[pygame.K_a]:
 					self.collision_respuestas(sprite)					    	
 	
 	def vertical_movement_collision(self,type_sprites):
@@ -83,22 +84,22 @@ class Level:
 				elif player.direction.y < 0:
 				    player.rect.top = sprite.rect.bottom
 				    player.direction.y = 0
-				#keys = pygame.key.get_pressed()    
-				if type_sprites == self.respuestas.sprites():
+				keys = pygame.key.get_pressed()    
+				if type_sprites == self.respuestas.sprites() and keys[pygame.K_a]:
 					self.collision_respuestas(sprite)	
 
 	def collision_respuestas(self,sprite):
-		sprite.revisar(self.ecuacion_sprite.respuesta_correcta)
+		sprite.revisar(self.ecuacion_sprite.respuesta_correcta,self.display_surface)
 		respuetas_temporal = []
-		nueva_respuesta = self.ecuacion_sprite.generator(self.level)
+		self.ecuacion_sprite.respuesta_correcta = self.ecuacion_sprite.generator(self.level) 
 
 		for sprite in self.respuestas.sprites():
-			if 0 < sprite.rect.x and sprite.rect.x < screen_width:
+			if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width :
 				sprite.texto = str(2)
 				respuetas_temporal.append(sprite)
 
 		sprite = random.choice(respuetas_temporal)	
-		sprite.texto = 	str(nueva_respuesta)		
+		sprite.texto = 	str(self.ecuacion_sprite.respuesta_correcta)		
 			
 
 	def input(self):
