@@ -14,12 +14,12 @@
 level_map0 = [
 'P                                       ',
 '           E                            ',
-' R              R     R                 ',
-' XX    X        X     XX  R             ',
-' XX R      R                         R  ',
+' RL    X        R     RL                ',
+' XX    L        X     XX  R             ',
+' XX R      R  L          L      L    RL ',
 ' XXXX         XX  R      XX          XXX',
-' XXXX       XX         R       R   R    ',
-' XX    X  XXXX    XX  XX       XX XX    ',
+' XXXX     L XX     L   R       R   R    ',
+' XX    X  XXXX    XX  XX    L  XX XX    ',
 '       X  XXXX    XX  XXX   XX XX XX    ',
 '    XXXX  XXXXXX  XX  XXXX  XX XX XX    ',
 'XXXXXXXX  XXXXXX  XX  XXXX  XX XX XX    ']
