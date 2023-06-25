@@ -8,3 +8,10 @@ level_5 = {'node_pos':(1050,400),'content':'this is level 5', 'unlock':5}
 levels = {0:level_0,1:level_1,2:level_2,3:level_3,4:level_4,5:level_5}
 
 
+level_map_0 = {
+	'terrain':'../levels/level_0/level_0_terrain.csv',
+	'player':'../levels/level_0/level_0_player.csv',	
+	'palms':'../levels/level_0/level_0_palms.csv',
+	'grass':'../levels/level_0/level_0_grass.csv',	
+	'enemies':'../levels/level_0/level_0_enemies.csv',
+}
