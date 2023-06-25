@@ -98,17 +98,19 @@ class Level:
 	def collision_respuestas(self,sprite,type_sprites):
 	
 		if type_sprites == self.respuestas_r.sprites():
-			type_sprites = self.respuestas_l.sprites()
 			self.alternancia_r += 1
 			self.alternancia_l = 0
 		else:
-			type_sprites = self.respuestas_r.sprites()
 			self.alternancia_l += 1 
 			self.alternancia_r = 0
 
-		sprite.revisar(self.ecuacion_sprite.respuesta_correcta,self.display_surface)
+		if self.alternancia_r == 1 or self.alternancia_l == 1:
+			sprite.revisar(self.ecuacion_sprite.respuesta_correcta,self.display_surface)			
+			if self.alternancia_r == 1:
+				type_sprites = self.respuestas_l.sprites()
+			if self.alternancia_l == 1:
+				type_sprites = self.respuestas_r.sprites()	
 
-        if self.alternancia == 1:
 			respuetas_temporal = []
 			self.ecuacion_sprite.respuesta_correcta = self.ecuacion_sprite.generator(self.level)         	
 			for sprite in type_sprites:
