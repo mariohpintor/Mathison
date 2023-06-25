@@ -41,11 +41,11 @@ class Level:
 					self.ecuacion.add(self.ecuacion_sprite)
 					#las respuestas empiezan en los sprites R
 				if cell == 'R':
-					respuesta_sprite_r = Respuestas((x,y),tile_size,1)
+					respuesta_sprite_r = Respuestas((x,y),tile_size,random.randint(-5,5))
 
 					self.respuestas_r.add(respuesta_sprite_r)
 				if cell == 'L':
-					respuesta_sprite_l = Respuestas((x,y),tile_size,1)
+					respuesta_sprite_l = Respuestas((x,y),tile_size,random.randint(-5,5))
 
 					self.respuestas_l.add(respuesta_sprite_l)			
 		sprite = random.choice(self.respuestas_r.sprites())
@@ -105,7 +105,9 @@ class Level:
 			self.alternancia_r = 0
 
 		if self.alternancia_r == 1 or self.alternancia_l == 1:
-			sprite.revisar(self.ecuacion_sprite.respuesta_correcta,self.display_surface)			
+			sprite.revisar(self.ecuacion_sprite.respuesta_correcta,self.display_surface)
+			for sprite in type_sprites:
+				sprite.texto = 'x'			
 			if self.alternancia_r == 1:
 				type_sprites = self.respuestas_l.sprites()
 			if self.alternancia_l == 1:
@@ -115,7 +117,7 @@ class Level:
 			self.ecuacion_sprite.respuesta_correcta = self.ecuacion_sprite.generator(self.level)         	
 			for sprite in type_sprites:
 				if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width :
-					sprite.texto = str(2)
+					sprite.texto = str(random.randint(-5,5))
 					respuetas_temporal.append(sprite)
 
 			sprite = random.choice(respuetas_temporal)	

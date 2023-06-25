@@ -23,11 +23,11 @@ class Respuestas(pygame.sprite.Sprite):
 	def revisar(self,respuesta_correcta,surface):
 		if respuesta_correcta ==float(self.texto):
 			calificacion = pygame.image.load("imagenes/paloma.png").convert_alpha()
-			calificacion = pygame.transform.scale(calificacion,(self.size,self.size))
+			calificacion = pygame.transform.scale(calificacion,(self.size*2,self.size*2))
 			print(self.texto)
 		else:
 			calificacion = pygame.image.load("imagenes/error.png").convert_alpha()
-			calificacion = pygame.transform.scale(calificacion,(self.size,self.size))					
+			calificacion = pygame.transform.scale(calificacion,(self.size*2,self.size*2))					
 		surface.blit(calificacion,(4*64,64))   		
 
 	def update(self, x_shift):
