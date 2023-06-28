@@ -5,7 +5,11 @@ Videojuego estilo plataforma con fines didácticos, en este juego se practica la
 pygame
 
 ## ¿Cómo ejecutar el juego?
-Compilar y ejecutar el archivo **platformer.py**
+ Para correr el juego debes seguir las siguientes instrucciones en la terminal:
+```sh
+cd videojuego
+python3 platformer.py
+```
 
 ## ¿Cómo jugar?
 
