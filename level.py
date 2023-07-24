@@ -1,6 +1,6 @@
 import pygame, random
 from tiles import Tile
-from settings import tile_size, screen_width
+from settings import tile_size, screen_width, screen_height
 from player import Player
 from ecuacion import Ecuacion
 from respuestas import Respuestas
@@ -133,6 +133,9 @@ class Level:
 			
 
 	def run(self):
+		fondo = pygame.image.load("../archivos_produccion/fondos/university.jpeg").convert_alpha()
+		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
+		self.display_surface.blit(fondo,(0,0))
 		self.input()
 		self.tiles.update(self.world_shift)
 		self.tiles.draw(self.display_surface)

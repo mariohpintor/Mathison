@@ -1,5 +1,6 @@
 import pygame
 from game_data import levels
+from settings import screen_width,screen_height
 
 class Node(pygame.sprite.Sprite):
 	def __init__(self,pos,status,icon_speed):
@@ -97,6 +98,9 @@ class Overworld:
 			#self.icon.sprite.rect.center = self.nodes.sprites()[self.current_level].rect.center
 
 	def run(self):
+		fondo = pygame.image.load("../archivos_produccion/fondos/computer_evolution.jpeg").convert_alpha()
+		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
+		self.display_surface.blit(fondo,(0,0))
 		self.input()
 		self.update_icon_pos()
 		self.icon.update()

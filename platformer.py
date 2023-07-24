@@ -44,7 +44,7 @@ clock = pygame.time.Clock()
 game = Game()
 
 #level2 = Level(level_map2,screen)
-fondo = pygame.image.load("imagenes/cyberpunk.jpeg").convert_alpha()
+fondo = pygame.image.load("../archivos_produccion/fondos/university.jpeg").convert_alpha()
 fondo = pygame.transform.scale(fondo, (screen_width,screen_height))
 while True:
 	for event in pygame.event.get():
