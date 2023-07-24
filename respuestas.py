@@ -7,7 +7,7 @@ class Respuestas(pygame.sprite.Sprite):
 		#self.pos = pos
 		self.size = size
 		self.texto = str(respuesta)
-		self.color = 'black'
+		self.color = (23, 32, 42  )
 		self.main_font = pygame.font.SysFont('arial', size - 7)
 		self.mitexto = self.main_font.render(self.texto, True,self.color)
         #rect and image

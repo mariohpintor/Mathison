@@ -5,14 +5,14 @@ class Ecuacion(pygame.sprite.Sprite):
 		super().__init__()
 		self.pos = pos
 		self.respuesta_correcta = self.generator(nivel)
-		self.color = 'red'
-		self.main_font = pygame.font.SysFont('arial', size)
+		self.color = (197, 63, 36)
+		self.main_font = pygame.font.SysFont('Arial Rounded MT Bold', size)
 		self.miTexto = self.main_font.render(self.texto, 0,self.color)
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
 		W = self.miTexto.get_width()
 		H = self.miTexto.get_height()
-		self.image = pygame.image.load("imagenes/cartel.png").convert_alpha()
-		self.image = pygame.transform.scale(self.image, (W + 40,H))
+		self.image = pygame.image.load("../archivos_produccion/christopher.png").convert_alpha()
+		self.image = pygame.transform.scale(self.image, (W + 40,H+20))
 		#self.image = pygame.Surface((W + 20,H + 20))
 		self.image.blit(self.miTexto, [10,0])
 
@@ -37,6 +37,6 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
 		W = self.miTexto.get_width()
 		H = self.miTexto.get_height()
-		self.image = pygame.image.load("imagenes/cartel.png").convert_alpha()
-		self.image = pygame.transform.scale(self.image, (W + 40,H))
+		self.image = pygame.image.load("../archivos_produccion/christopher.png").convert_alpha()
+		self.image = pygame.transform.scale(self.image, (W + 40,H+20))
 		self.image.blit(self.miTexto, [10,0])

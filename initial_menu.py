@@ -5,7 +5,7 @@ class Imenu:
 	def __init__(self,surface,create_overworld):
 		self.surface = surface
 		self.create_overworld = create_overworld
-		self.main_font = pygame.font.SysFont("arial", 80)
+		self.main_font = pygame.font.SysFont("Arial Rounded MT Bold", 80)
 
 	def run(self):
 		miTexto = self.main_font.render("MATHISON", 0, (255, 255, 255))
