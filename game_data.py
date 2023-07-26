@@ -9,9 +9,11 @@ levels = {0:level_0,1:level_1,2:level_2,3:level_3,4:level_4,5:level_5}
 
 
 level_map_0 = {
-	'terrain':'../levels/level_0/level_0_terrain.csv',
-	'player':'../levels/level_0/level_0_player.csv',	
-	'palms':'../levels/level_0/level_0_palms.csv',
-	'grass':'../levels/level_0/level_0_grass.csv',	
-	'enemies':'../levels/level_0/level_0_enemies.csv',
+	'terrain':'../niveles_mathison/nivel_1_csv/level_0_terrain.csv',
+	'respuestas_r':'../niveles_mathison/nivel_1_csv/level_0_respuestas_r.csv',
+	'respuestas_l':'../niveles_mathison/nivel_1_csv/level_0_respuestas_l.csv',
+	'player':'../niveles_mathison/nivel_1_csv/level_0_player.csv',
+	'enemies':'../niveles_mathison/nivel_1_csv/level_0_enemies.csv',
+	'ecuacion':'../niveles_mathison/nivel_1_csv/level_0_ecuacion.csv',
+	'constrains':'../niveles_mathison/nivel_1_csv/level_0_constrains.csv'	
 }

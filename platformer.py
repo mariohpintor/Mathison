@@ -3,6 +3,8 @@ from settings import *
 from level import Level
 from overworld import Overworld
 from initial_menu import Imenu
+from game_data import level_map_0
+from enemies import Enemy
 
 class Game:
 	def __init__(self):

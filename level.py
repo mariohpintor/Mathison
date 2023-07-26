@@ -16,6 +16,83 @@ class Level:
 		self.create_overworld = create_overworld
 		self.alternancia_r = 0
 		self.alternancia_l = 0
+		#código en level 
+
+		#player 
+		player_layout = import_csv_layout(level_data['player'])
+		self.player = pygame.sprite.GroupSingle()
+		self.goal = pygame.sprite.GroupSingle()
+		self.player_setup(player_layout)
+
+		#terrain setup
+
+		terrain_layout = import_csv_layout(level_data['terrain'])
+		self.terrain_sprites = self.create_tile_group(terrain_layout,'terrain')
+
+		#'respuestas_r' setup
+
+		respuestas_r_layout = import_csv_layout(level_data['respuestas_r'])
+		self.respuestas_r_sprites = self.create_tile_group(respuestas_r_layout,'respuestas_r')
+
+		#'respuestas_l' setup
+
+		respuestas_l_layout = import_csv_layout(level_data['respuestas_l'])
+		self.respuestas_l_sprites = self.create_tile_group(respuestas_l_layout,'respuestas_l')
+
+		#enemy
+		enemy_layout = import_csv_layout(level_data['enemies'])
+		self.enemy_sprites = self.create_tile_group(enemy_layout, 'enemies')
+
+		#constraint
+		constrains_layout = import_csv_layout(level_data['constrains'])
+		self.constrains_sprites = self.create_tile_group(constrains_layout, 'constrains')
+
+	def create_tile_group(self, layout, type):
+		sprite_group = pygame.sprite.Group()
+
+		for row_index, row in enumerate(layout):
+			for col_index, val in enumerate(row):
+				if val != '-1':
+					x = col_index*tile_size
+					y = row_index*tile_size
+
+					if type == 'terrain':
+						terrain_tile_list = import_cut_graphics('../niveles_mathison/imagenes_nivel/terrain_tiles.png')
+						tile_surface = terrain_tile_list[int(val)]
+						sprite = StaticTile(tile_size,x,y,tile_surface)
+
+					if type == 'respuestas_r':
+						respuestas_r_tile_list = import_cut_graphics('../niveles_mathison/imagenes_nivel/respuesta.png')
+						tile_surface = respuestas_r_tile_list[int(val)]
+						sprite = StaticTile(tile_size,x,y,tile_surface)
+
+					if type == 'enemies':
+						sprite = Enemy(tile_size,x,y)
+
+					if type == 'constrains':
+						sprite = Tile(tile_size,x,y)
+
+				
+					sprite_group.add(sprite)
+
+		return sprite_group	
+
+	def player_setup(self,layout):
+		for row_index, row in enumerate(layout):
+			for col_index, val in enumerate(row):
+				x = col_index*tile_size
+				y = row_index*tile_size
+				if val == '0':
+					print('player goes here')
+				if val == '1':
+					hat_surface = pygame.image.load('../graphics/character/hat.png').convert_alpha()
+					sprite = StaticTile(tile_size,x,y,hat_surface)
+					self.goal.add(sprite)
+
+	def enemy_collision_reverse(self):
+		for enemy in self.enemy_sprites.sprites():
+			if pygame.sprite.spritecollide(enemy,self.constrains_sprites,False):
+				enemy.reverse()	
 
 	def setup_level(self,layout,level):
 		self.level = level
@@ -158,4 +235,9 @@ class Level:
 		self.respuestas_r.draw(self.display_surface)
 		self.respuestas_l.update(self.world_shift)
 		self.respuestas_l.draw(self.display_surface)
+
+		#self.terrain_sprites.update(self.world_shift)
+		#self.terrain_sprites.draw(self.display_surface)
+		#self.enemy_collision_reverse()
+
 
