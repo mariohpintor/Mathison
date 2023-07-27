@@ -16,13 +16,18 @@ class Level:
 		self.create_overworld = create_overworld
 		self.alternancia_r = 0
 		self.alternancia_l = 0
-		#código en level 
+		
+		#Código nuevo ------------------
 
 		#player 
 		player_layout = import_csv_layout(level_data['player'])
 		self.player = pygame.sprite.GroupSingle()
 		self.goal = pygame.sprite.GroupSingle()
 		self.player_setup(player_layout)
+
+		#ecuacion
+		ecuacion_layout = import_csv_layout(level_data['ecuacion'])
+		self.ecuacion = pygame.sprite.GroupSingle()
 
 		#terrain setup
 
@@ -62,9 +67,10 @@ class Level:
 						sprite = StaticTile(tile_size,x,y,tile_surface)
 
 					if type == 'respuestas_r':
-						respuestas_r_tile_list = import_cut_graphics('../niveles_mathison/imagenes_nivel/respuesta.png')
-						tile_surface = respuestas_r_tile_list[int(val)]
-						sprite = StaticTile(tile_size,x,y,tile_surface)
+						sprite = Respuestas((x,y),tile_size,random.randint(-5,5))
+
+					if type == 'respuestas_l':
+						sprite = Respuestas((x,y),tile_size,random.randint(-5,5))
 
 					if type == 'enemies':
 						sprite = Enemy(tile_size,x,y)
@@ -93,7 +99,7 @@ class Level:
 		for enemy in self.enemy_sprites.sprites():
 			if pygame.sprite.spritecollide(enemy,self.constrains_sprites,False):
 				enemy.reverse()	
-
+		#------------------------------------------------------------------
 	def setup_level(self,layout,level):
 		self.level = level
 		self.tiles = pygame.sprite.Group()
@@ -236,8 +242,23 @@ class Level:
 		self.respuestas_l.update(self.world_shift)
 		self.respuestas_l.draw(self.display_surface)
 
-		#self.terrain_sprites.update(self.world_shift)
-		#self.terrain_sprites.draw(self.display_surface)
-		#self.enemy_collision_reverse()
+		#Código nuevo ---------------------------------
+
+		self.terrain_sprites.update(self.world_shift)
+		self.terrain_sprites.draw(self.display_surface)
+		self.enemy_collision_reverse()
+
+		self.respuestas_r_sprites.update(self.world_shift)
+		self.respuestas_r_sprites.draw(self.display_surface)
+
+		self.respuestas_l_sprites.update(self.world_shift)
+		self.respuestas_l_sprites.draw(self.display_surface)
+
+		self.enemy_sprites.update(self.world_shift)
+		self.enemy_sprites.draw(self.display_surface)
+
+		self.constrains_sprites.update(self.world_shift)
+
+		#------------------------------------------------------------------
 
 

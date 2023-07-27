@@ -17,7 +17,8 @@ def import_folder(path):
 	return surface_list	
 
 #Funciones en support
-def import_folder(path):
+'''
+def import_folder(path):#esta funcion esta repetida
 	surface_list = []
 
 	for _,__,image_files in walk(path):
@@ -27,7 +28,7 @@ def import_folder(path):
 			surface_list.append(image_surf)
 			
 	return surface_list		
-
+'''
 def import_csv_layout(path):
     terrain_map = []
     with open(path) as map:
