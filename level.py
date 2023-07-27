@@ -1,11 +1,12 @@
 import pygame, random
-from tiles import Tile
+from tiles import *
 from settings import tile_size, screen_width, screen_height
 from player import Player
 from ecuacion import Ecuacion
 from respuestas import Respuestas
 from enemies import Enemy
-import game_data
+from game_data import *
+from support import *
 
 
 class Level:
@@ -99,7 +100,7 @@ class Level:
 					sprite = Player((x,y))
 					self.player.add(sprite)
 				if val == '1':
-					hat_surface = pygame.image.load('../graphics/character/hat.png').convert_alpha()
+					hat_surface = pygame.image.load('../clear_code/graphics/character/hat.png').convert_alpha()
 					sprite = StaticTile(tile_size,x,y,hat_surface)
 					self.goal.add(sprite)
 
