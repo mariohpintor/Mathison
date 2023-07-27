@@ -4,16 +4,23 @@ from settings import tile_size, screen_width, screen_height
 from player import Player
 from ecuacion import Ecuacion
 from respuestas import Respuestas
+from enemies import Enemy
+import game_data
 
 
 class Level:
-	def __init__(self, level_data,surface,current_level,create_overworld):
+	def __init__(self,surface,current_level,create_overworld):
+		# general setup
 		self.display_surface = surface
-		self.setup_level(level_data,current_level)
+		#self.setup_level(level_data,current_level)
 		self.world_shift = 0
-		self.current_level = current_level
-		self.new_max_level = 2
+
+		# overworld connection
 		self.create_overworld = create_overworld
+		self.current_level = current_level
+		level_data = levels[self.current_level]
+		self.new_max_level = level_data['unlock']
+
 		self.alternancia_r = 0
 		self.alternancia_l = 0
 		
@@ -89,7 +96,8 @@ class Level:
 				x = col_index*tile_size
 				y = row_index*tile_size
 				if val == '0':
-					print('player goes here')
+					sprite = Player((x,y))
+					self.player.add(sprite)
 				if val == '1':
 					hat_surface = pygame.image.load('../graphics/character/hat.png').convert_alpha()
 					sprite = StaticTile(tile_size,x,y,hat_surface)
@@ -100,6 +108,7 @@ class Level:
 			if pygame.sprite.spritecollide(enemy,self.constrains_sprites,False):
 				enemy.reverse()	
 		#------------------------------------------------------------------
+
 	def setup_level(self,layout,level):
 		self.level = level
 		self.tiles = pygame.sprite.Group()
@@ -204,8 +213,7 @@ class Level:
 					respuetas_temporal.append(sprite)
 
 			sprite = random.choice(respuetas_temporal)	
-			sprite.texto = 	str(self.ecuacion_sprite.respuesta_correcta)		
-			
+			sprite.texto = 	str(self.ecuacion_sprite.respuesta_correcta)				
 
 	def input(self):
 		keys = pygame.key.get_pressed()
@@ -213,40 +221,50 @@ class Level:
 			self.create_overworld(self.current_level,self.new_max_level)
 		if keys[pygame.K_ESCAPE]:
 			self.create_overworld(self.current_level,0)
-			
 
+	def check_death(self):
+		if self.player.sprite.rect.top > screen_height:
+			self.create_overworld(self.current_level,0)
+
+	def check_win(self):
+		if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):
+			self.create_overworld(self.current_level,self.new_max_level)
+			
 	def run(self):
 		fondo = pygame.image.load("../archivos_produccion/fondos/university.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
 		self.input()
-		self.tiles.update(self.world_shift)
-		self.tiles.draw(self.display_surface)
+
+		#self.tiles.update(self.world_shift)
+		#self.tiles.draw(self.display_surface)
+
 		self.scroll_x()
 
-		self.player.update()
-		self.horizontal_movement_collision(self.tiles.sprites())
-		self.vertical_movement_collision(self.tiles.sprites())
+		#self.player.update()
+		self.horizontal_movement_collision(self.terrain_sprites.sprites())
+		self.vertical_movement_collision(self.terrain_sprites.sprites())
 
-		self.horizontal_movement_collision(self.respuestas_r.sprites())
-		self.vertical_movement_collision(self.respuestas_r.sprites())
-		self.horizontal_movement_collision(self.respuestas_l.sprites())
-		self.vertical_movement_collision(self.respuestas_l.sprites())		
-		self.player.draw(self.display_surface)
+		self.horizontal_movement_collision(self.respuestas_r_sprites.sprites())
+		self.vertical_movement_collision(self.respuestas_r_sprites.sprites())
+		self.horizontal_movement_collision(self.respuestas_l_sprites.sprites())
+		self.vertical_movement_collision(self.respuestas_l_sprites.sprites())		
+		#self.player.draw(self.display_surface)
         
 		self.ecuacion.update()
 		self.ecuacion.draw(self.display_surface)
 
+		'''
 		self.respuestas_r.update(self.world_shift)
 		self.respuestas_r.draw(self.display_surface)
 		self.respuestas_l.update(self.world_shift)
 		self.respuestas_l.draw(self.display_surface)
+		'''
 
 		#Código nuevo ---------------------------------
 
 		self.terrain_sprites.update(self.world_shift)
 		self.terrain_sprites.draw(self.display_surface)
-		self.enemy_collision_reverse()
 
 		self.respuestas_r_sprites.update(self.world_shift)
 		self.respuestas_r_sprites.draw(self.display_surface)
@@ -256,8 +274,17 @@ class Level:
 
 		self.enemy_sprites.update(self.world_shift)
 		self.enemy_sprites.draw(self.display_surface)
+		self.enemy_collision_reverse()
 
 		self.constrains_sprites.update(self.world_shift)
+
+		self.player.update()
+		self.player.draw(self.display_surface)
+		self.goal.update(self.world_shift)
+		self.goal.draw(self.display_surface)
+
+		self.check_death()
+		self.check_win()
 
 		#------------------------------------------------------------------
 

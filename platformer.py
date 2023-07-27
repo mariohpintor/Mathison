@@ -3,8 +3,6 @@ from settings import *
 from level import Level
 from overworld import Overworld
 from initial_menu import Imenu
-from game_data import level_map_0
-from enemies import Enemy
 
 class Game:
 	def __init__(self):
@@ -14,7 +12,7 @@ class Game:
 		self.initial_menu = Imenu(screen, self.create_overworld)
 
 	def create_level(self,current_level):
-		self.level = Level(level_map0,screen,current_level,self.create_overworld)
+		self.level = Level(screen,current_level,self.create_overworld)
 		self.status = 'level'
 
 	def  create_overworld(self,current_level, new_max_level):
@@ -41,20 +39,17 @@ pygame.init()
 pygame.display.set_caption("Mathison begins")
 screen = pygame.display.set_mode((screen_width,screen_height))
 clock = pygame.time.Clock()
-#level0 = Level(level_map0,screen,number_level0)
+
 
 game = Game()
 
-#level2 = Level(level_map2,screen)
 while True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			sys.exit()
 
-	#screen.fill((204,255,255))
 	game.run()
-	#level0.run()
 
 	pygame.display.update()
 	clock.tick(60)	
