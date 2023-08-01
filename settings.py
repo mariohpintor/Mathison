@@ -38,8 +38,8 @@ level_map1 = [
 'XXXXXXXX  XXXXXX  XX  XXXX  XX']
 
 tile_size = 64
-screen_width = tile_size*18
-screen_height = len(level_map0)*tile_size
+screen_width = tile_size*20
+screen_height = 14*tile_size
 
 #tipo de ecuacion relativo al nivel
 number_level0 = 0
