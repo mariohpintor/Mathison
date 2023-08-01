@@ -1,13 +1,13 @@
 import pygame
 from game_data import levels
-from settings import screen_width,screen_height
+from settings import screen_width,screen_height,tile_size
 
 class Node(pygame.sprite.Sprite):
 	def __init__(self,pos,status,icon_speed):
 		super().__init__()
 		self.image = pygame.Surface((100,80))
 		if status == 'available':	
-			self.image.fill('red')
+			self.image.fill('green')
 		else:
 			self.image.fill('grey')	
 		self.rect = self.image.get_rect(center = pos)
@@ -18,8 +18,9 @@ class Icon(pygame.sprite.Sprite):
 	def __init__(self,pos):
 		super().__init__()
 		self.pos = pos		
-		self.image = pygame.Surface((20,20))
-		self.image.fill('blue')
+		self.image = pygame.image.load('../niveles_mathison/imagenes_nivel/manzana.png')
+		self.image = pygame.transform.scale(self.image, (60,60))
+		#self.image.fill('blue')
 		self.rect = self.image.get_rect(center = pos)
 	
 	def update(self):

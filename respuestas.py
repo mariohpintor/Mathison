@@ -14,7 +14,7 @@ class Respuestas(pygame.sprite.Sprite):
 		self.rect = self.mitexto.get_rect(topleft=pos)
 		self.W = self.mitexto.get_width()
 		self.H = self.mitexto.get_height()
-		self.image = pygame.image.load("imagenes/sheet.png").convert_alpha()
+		self.image = pygame.image.load("../niveles_mathison/imagenes_nivel/respuesta.png").convert_alpha()
 		self.image = pygame.transform.scale(self.image, (self.W + 20,self.H))		
 		self.image.blit(self.mitexto,[10,0])
 		
@@ -36,7 +36,7 @@ class Respuestas(pygame.sprite.Sprite):
 		self.rect.x += x_shift	
 		self.W = self.mitexto.get_width()
 		self.H = self.mitexto.get_height()
-		self.image = pygame.image.load("imagenes/sheet.png").convert_alpha()
+		self.image = pygame.image.load("../niveles_mathison/imagenes_nivel/respuesta.png").convert_alpha()
 		self.image = pygame.transform.scale(self.image, (self.W + 20,self.H))		
 		self.image.blit(self.mitexto,[10,0])
 
