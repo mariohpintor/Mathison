@@ -34,8 +34,10 @@ class Level:
 		self.player_setup(player_layout)
 
 		#ecuacion
+		#self.ecuacion = pygame.sprite.GroupSingle()
 		ecuacion_layout = import_csv_layout(level_data['ecuacion'])
-		self.ecuacion = pygame.sprite.GroupSingle()
+		self.ecuacion_group= pygame.sprite.GroupSingle()
+		self.ecuacion_setup(ecuacion_layout)
 
 		#terrain setup
 
@@ -103,13 +105,22 @@ class Level:
 					hat_surface = pygame.image.load('../clear_code/graphics/character/hat.png').convert_alpha()
 					sprite = StaticTile(tile_size,x,y,hat_surface)
 					self.goal.add(sprite)
+	
+	def ecuacion_setup(self,layout):
+		for row_index, row in enumerate(layout):
+			for col_index, val in enumerate(row):
+				x = col_index*tile_size
+				y = row_index*tile_size
+				if val == '0':
+					self.ecuacion = Ecuacion((x,y),tile_size,self.current_level)
+					self.ecuacion_group.add(self.ecuacion)
 
 	def enemy_collision_reverse(self):
 		for enemy in self.enemy_sprites.sprites():
 			if pygame.sprite.spritecollide(enemy,self.constrains_sprites,False):
 				enemy.reverse()	
 		#------------------------------------------------------------------
-
+    #La función setup_level ya no se usa
 	def setup_level(self,layout,level):
 		self.level = level
 		self.tiles = pygame.sprite.Group()
@@ -169,7 +180,7 @@ class Level:
 				elif player.direction.x > 0:
 				    player.rect.right = sprite.rect.left
 				keys = pygame.key.get_pressed()
-				if keys[pygame.K_a] and type_sprites != self.tiles.sprites():
+				if keys[pygame.K_a] and type_sprites != self.terrain_sprites.sprites():
 					self.collision_respuestas(sprite,type_sprites)					    	
 	
 	def vertical_movement_collision(self,type_sprites):
@@ -185,12 +196,12 @@ class Level:
 				    player.rect.top = sprite.rect.bottom
 				    player.direction.y = 0
 				keys = pygame.key.get_pressed()    
-				if keys[pygame.K_a] and type_sprites != self.tiles.sprites():
+				if keys[pygame.K_a] and type_sprites != self.terrain_sprites.sprites():
 					self.collision_respuestas(sprite,type_sprites)	
 
 	def collision_respuestas(self,sprite,type_sprites):
 	
-		if type_sprites == self.respuestas_r.sprites():
+		if type_sprites == self.respuestas_r_sprites.sprites():
 			self.alternancia_r += 1
 			self.alternancia_l = 0
 		else:
@@ -198,23 +209,23 @@ class Level:
 			self.alternancia_r = 0
 
 		if self.alternancia_r == 1 or self.alternancia_l == 1:
-			sprite.revisar(self.ecuacion_sprite.respuesta_correcta,self.display_surface)
+			sprite.revisar(self.ecuacion.respuesta_correcta,self.display_surface)
 			for sprite in type_sprites:
 				sprite.texto = 'x'			
 			if self.alternancia_r == 1:
-				type_sprites = self.respuestas_l.sprites()
+				type_sprites = self.respuestas_l_sprites.sprites()
 			if self.alternancia_l == 1:
-				type_sprites = self.respuestas_r.sprites()	
+				type_sprites = self.respuestas_r_sprites.sprites()	
 
 			respuetas_temporal = []
-			self.ecuacion_sprite.respuesta_correcta = self.ecuacion_sprite.generator(self.level)         	
+			self.ecuacion.respuesta_correcta = self.ecuacion.generator(self.current_level)         	
 			for sprite in type_sprites:
 				if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width :
 					sprite.texto = str(random.randint(-5,5))
 					respuetas_temporal.append(sprite)
 
 			sprite = random.choice(respuetas_temporal)	
-			sprite.texto = 	str(self.ecuacion_sprite.respuesta_correcta)				
+			sprite.texto = 	str(self.ecuacion.respuesta_correcta)				
 
 	def input(self):
 		keys = pygame.key.get_pressed()
@@ -251,9 +262,6 @@ class Level:
 		self.horizontal_movement_collision(self.respuestas_l_sprites.sprites())
 		self.vertical_movement_collision(self.respuestas_l_sprites.sprites())		
 		#self.player.draw(self.display_surface)
-        
-		self.ecuacion.update()
-		self.ecuacion.draw(self.display_surface)
 
 		'''
 		self.respuestas_r.update(self.world_shift)
@@ -266,6 +274,9 @@ class Level:
 
 		self.terrain_sprites.update(self.world_shift)
 		self.terrain_sprites.draw(self.display_surface)
+
+		self.ecuacion.update()
+		self.ecuacion_group.draw(self.display_surface)
 
 		self.respuestas_r_sprites.update(self.world_shift)
 		self.respuestas_r_sprites.draw(self.display_surface)
