@@ -5,16 +5,16 @@ class Ecuacion(pygame.sprite.Sprite):
 		super().__init__()
 		self.pos = pos
 		self.respuesta_correcta = self.generator(nivel)
-		self.color = (197, 63, 36)
+		self.color = 'red'
 		self.main_font = pygame.font.SysFont('Arial Rounded MT Bold', size)
 		self.miTexto = self.main_font.render(self.texto, 0,self.color)
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
-		W = self.miTexto.get_width()
-		H = self.miTexto.get_height()
+		w = self.miTexto.get_width()
+		h = self.miTexto.get_height()
 		self.image = pygame.image.load("../imagenes/computer1.png").convert_alpha()
-		self.image = pygame.transform.scale(self.image, (W + 40,H+20))
+		self.image = pygame.transform.scale(self.image, (w+40,w*137/192))
 		#self.image = pygame.Surface((W + 20,H + 20))
-		self.image.blit(self.miTexto, [10,0])
+		self.image.blit(self.miTexto, [20,(w*137/192)/2-h/2])
 
 	def generator(self,nivel):
 		a = random.randint(1,10)
@@ -28,6 +28,9 @@ class Ecuacion(pygame.sprite.Sprite):
 			respuesta = round(b/a,2)
 		elif nivel == 2:
 			operacion = '/'
+			respuesta = round(a/b,2)
+		elif nivel == 3:
+			operacion = '^'
 			respuesta = round(a/b,2)		
 		self.texto = str(a) +' ' +operacion +' ? ' + ' = ' + str(b)
 		return respuesta
@@ -35,8 +38,8 @@ class Ecuacion(pygame.sprite.Sprite):
 	def update(self):
 		self.miTexto = self.main_font.render(self.texto, 0,self.color)
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
-		W = self.miTexto.get_width()
-		H = self.miTexto.get_height()
+		w = self.miTexto.get_width()
+		h = self.miTexto.get_height()
 		self.image = pygame.image.load("../imagenes/computer1.png").convert_alpha()
-		self.image = pygame.transform.scale(self.image, (W + 40,H+20))
-		self.image.blit(self.miTexto, [10,0])
+		self.image = pygame.transform.scale(self.image, (w+40,w*137/192))
+		self.image.blit(self.miTexto, [20,(w*137/192)/2-h/2])

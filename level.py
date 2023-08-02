@@ -62,6 +62,9 @@ class Level:
 		constrains_layout = import_csv_layout(level_data['constrains'])
 		self.constrains_sprites = self.create_tile_group(constrains_layout, 'constrains')
 
+		sprite = random.choice(self.respuestas_r_sprites.sprites())
+		sprite.texto = 	str(self.ecuacion.respuesta_correcta)
+
 	def create_tile_group(self, layout, type):
 		sprite_group = pygame.sprite.Group()
 
@@ -220,7 +223,7 @@ class Level:
 			respuetas_temporal = []
 			self.ecuacion.respuesta_correcta = self.ecuacion.generator(self.current_level)         	
 			for sprite in type_sprites:
-				if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width :
+				if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width + tile_size*4:
 					sprite.texto = str(random.randint(-5,5))
 					respuetas_temporal.append(sprite)
 

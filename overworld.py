@@ -5,8 +5,8 @@ from settings import screen_width,screen_height,tile_size
 class Node(pygame.sprite.Sprite):
 	def __init__(self,pos,status,icon_speed,path):
 		super().__init__()
-		self.image = pygame.image.load(path)
-		self.image = pygame.transform.scale(self.image, (150,100))
+		self.image = pygame.image.load(path).convert_alpha()
+		self.image = pygame.transform.scale(self.image, (200,150))
 		if status == 'available':	
 			self.status = 'available'
 		else:
@@ -15,11 +15,18 @@ class Node(pygame.sprite.Sprite):
 
 		self.detection_zone = pygame.Rect(self.rect.centerx - (icon_speed/2),self.rect.centery - (icon_speed/2),icon_speed,icon_speed)
 
+	def update(self):
+		if self.status == 'locked':
+			tint_surf = self.image.copy()
+			tint_surf.fill('green',None,pygame.BLEND_RGBA_MULT)
+			self.image.blit(tint_surf,(0,0))
+		
+
 class Icon(pygame.sprite.Sprite):
 	def __init__(self,pos):
 		super().__init__()
 		self.pos = pos		
-		self.image = pygame.image.load('../imagenes/manzana.png')
+		self.image = pygame.image.load('../imagenes/manzana.png').convert_alpha()
 		self.image = pygame.transform.scale(self.image, (60,60))
 		#self.image.fill('blue')
 		self.rect = self.image.get_rect(center = pos)
@@ -49,14 +56,17 @@ class Overworld:
 		
 		for index, node_data in enumerate(levels.values()):
 			if index <= self.max_level:
-				node_sprite = Node(node_data['node_pos'],'available',self.speed,'../imagenes/compu_nivel_1.png')
+				node_sprite = Node(node_data['node_pos'],'available',self.speed,node_data['node_graphics'])
 			else:
-				node_sprite = Node(node_data['node_pos'],'lock',self.speed,'../imagenes/compu_nivel_1.png')	
+				node_sprite = Node(node_data['node_pos'],'locked',self.speed,node_data['node_graphics'])	
 			self.nodes.add(node_sprite)
 
 	def draw_paths(self):
-		points = [node['node_pos'] for index,node in enumerate(levels.values()) if index<=self.max_level]
-		pygame.draw.lines(self.display_surface,'red', False, points,6)
+		if self.max_level > 0:
+			points = [node['node_pos'] for index,node in enumerate(levels.values()) if index<=self.max_level]
+			pygame.draw.lines(self.display_surface,'white', False, points,10)
+		else:
+			pass
 
 	def setup_icon(self):
 		self.icon = pygame.sprite.GroupSingle()
@@ -108,5 +118,6 @@ class Overworld:
 		self.icon.update()
 		self.draw_paths()		
 		self.nodes.draw(self.display_surface)
+		self.nodes.update()
 		self.icon.draw(self.display_surface)
 			

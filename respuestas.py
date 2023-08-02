@@ -1,4 +1,5 @@
 import pygame, sys, random
+from settings import screen_width,screen_height
 
 class Respuestas(pygame.sprite.Sprite):
 	def __init__(self,pos,size,respuesta):
@@ -28,7 +29,7 @@ class Respuestas(pygame.sprite.Sprite):
 		else:
 			calificacion = pygame.image.load("../imagenes/error.png").convert_alpha()
 			calificacion = pygame.transform.scale(calificacion,(self.size*2,self.size*2))					
-		surface.blit(calificacion,(4*64,64))   		
+		surface.blit(calificacion,(screen_width/2,screen_height/2))   		
 
 	def update(self, x_shift):
 		self.mitexto = self.main_font.render(self.texto, True,self.color)

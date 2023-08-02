@@ -6,7 +6,7 @@ from initial_menu import Imenu
 
 class Game:
 	def __init__(self):
-		self.max_level = 2
+		self.max_level = 0
 		#self.overworld = Overworld(0,self.max_level,screen,self.create_level,self.create_initial_menu)
 		self.status = 'menu'
 		self.initial_menu = Imenu(screen, self.create_overworld)
