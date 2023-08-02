@@ -17,7 +17,7 @@ class Imenu:
 		if keys[pygame.K_z]:
 			self.create_overworld(0,3)
 
-		fondo = pygame.image.load("../archivos_produccion/fondos/main_menu1.jpeg").convert_alpha()
+		fondo = pygame.image.load("../imagenes/fondos/main_menu1.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.surface.blit(fondo,(0,0))
 		self.surface.blit(miTexto,miTexto_rect)

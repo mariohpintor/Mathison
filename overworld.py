@@ -1,15 +1,16 @@
 import pygame
-from game_data import levels
+from game_data import *
 from settings import screen_width,screen_height,tile_size
 
 class Node(pygame.sprite.Sprite):
-	def __init__(self,pos,status,icon_speed):
+	def __init__(self,pos,status,icon_speed,path):
 		super().__init__()
-		self.image = pygame.Surface((100,80))
+		self.image = pygame.image.load(path)
+		self.image = pygame.transform.scale(self.image, (150,100))
 		if status == 'available':	
-			self.image.fill('green')
+			self.status = 'available'
 		else:
-			self.image.fill('grey')	
+			self.status = 'locked'	
 		self.rect = self.image.get_rect(center = pos)
 
 		self.detection_zone = pygame.Rect(self.rect.centerx - (icon_speed/2),self.rect.centery - (icon_speed/2),icon_speed,icon_speed)
@@ -18,7 +19,7 @@ class Icon(pygame.sprite.Sprite):
 	def __init__(self,pos):
 		super().__init__()
 		self.pos = pos		
-		self.image = pygame.image.load('../niveles_mathison/imagenes_nivel/manzana.png')
+		self.image = pygame.image.load('../imagenes/manzana.png')
 		self.image = pygame.transform.scale(self.image, (60,60))
 		#self.image.fill('blue')
 		self.rect = self.image.get_rect(center = pos)
@@ -48,9 +49,9 @@ class Overworld:
 		
 		for index, node_data in enumerate(levels.values()):
 			if index <= self.max_level:
-				node_sprite = Node(node_data['node_pos'],'available',self.speed)
+				node_sprite = Node(node_data['node_pos'],'available',self.speed,'../imagenes/compu_nivel_1.png')
 			else:
-				node_sprite = Node(node_data['node_pos'],'lock',self.speed)	
+				node_sprite = Node(node_data['node_pos'],'lock',self.speed,'../imagenes/compu_nivel_1.png')	
 			self.nodes.add(node_sprite)
 
 	def draw_paths(self):
@@ -99,7 +100,7 @@ class Overworld:
 			#self.icon.sprite.rect.center = self.nodes.sprites()[self.current_level].rect.center
 
 	def run(self):
-		fondo = pygame.image.load("../archivos_produccion/fondos/computer_evolution.jpeg").convert_alpha()
+		fondo = pygame.image.load("../imagenes/fondos/computer_evolution.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
 		self.input()
