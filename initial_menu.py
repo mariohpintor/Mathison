@@ -11,7 +11,7 @@ class Imenu:
 	def run(self):
 		miTexto = self.main_font.render("MATHISON", 0, (36, 229, 14))
 		subtitulo = self.main_font.render("[Un juego de ecuaciones]", 0, (36, 229, 14))
-		instrucciones = self.sub_font.render('Presiona [ Z ], para iniciar',0,'white')
+		instrucciones = self.sub_font.render('Presiona [ Z ] para iniciar',0,'white')
 		miTexto_rect = miTexto.get_rect(center=(screen_width/2,screen_height/2-200))
 		subtitulo_rect = subtitulo.get_rect(center=(screen_width/2,screen_height/2))
 		instrucciones_rect = instrucciones.get_rect(center =(screen_width/2,screen_height/2+300))

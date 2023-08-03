@@ -22,7 +22,7 @@ class Ecuacion(pygame.sprite.Sprite):
 		#c = random.randint(1,10)		
 		if nivel == 0:
 			operacion = '+'
-			respuesta = round(b-a,2)
+			respuesta = b-a,2
 		elif nivel == 1:
 			operacion = 'x'
 			respuesta = round(b/a,2)
@@ -32,15 +32,15 @@ class Ecuacion(pygame.sprite.Sprite):
 		elif nivel == 3:
 			c = random.randint(1,10)
 			self.texto = str(a) + 'x + ' + str(b) + ' = ' + str(c)
-			respuesta = (c-b)/a 
+			respuesta = round((c-b)/a,2) 
 		elif nivel == 4:
 			c = random.randint(1,10)
 			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
-			respuesta = c/a - b
+			respuesta = round(c/a - b,2)
 		elif nivel == 5:
 			c = random.randint(1,10)
 			self.texto = str(a) + '/(x + ' + str(b) + ') = ' + str(c)
-			respuesta = a/c - b 
+			respuesta = round(a/c - b,2) 
 
 		if nivel < 3:		
 			self.texto = str(a) +' ' + operacion +' ? ' + ' = ' + str(b)
