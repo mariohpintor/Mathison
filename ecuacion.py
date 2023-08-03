@@ -30,9 +30,20 @@ class Ecuacion(pygame.sprite.Sprite):
 			operacion = '/'
 			respuesta = round(a/b,2)
 		elif nivel == 3:
-			operacion = '^'
-			respuesta = round(a/b,2)		
-		self.texto = str(a) +' ' +operacion +' ? ' + ' = ' + str(b)
+			c = random.randint(1,10)
+			self.texto = str(a) + 'x + ' + str(b) + ' = ' + str(c)
+			respuesta = (c-b)/a 
+		elif nivel == 4:
+			c = random.randint(1,10)
+			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
+			respuesta = c/a - b
+		elif nivel == 5:
+			c = random.randint(1,10)
+			self.texto = str(a) + '/(x + ' + str(b) + ') = ' + str(c)
+			respuesta = a/c - b 
+
+		if nivel < 3:		
+			self.texto = str(a) +' ' + operacion +' ? ' + ' = ' + str(b)
 		return respuesta
 
 	def update(self):

@@ -52,33 +52,31 @@ level_3 = {
 }
 
 level_4 = {
-	'terrain':'../niveles/level3_csv/level3_terrain.csv',
-	'respuestas_r':'../niveles/level3_csv/level3_respuestas_r.csv',
-	'respuestas_l':'../niveles/level3_csv/level3_respuestas_l.csv',
-	'player':'../niveles/level3_csv/level3_player.csv',
-	'enemies':'../niveles/level3_csv/level3_enemies.csv',
-	'ecuacion':'../niveles/level3_csv/level3_ecuacion.csv',
-	'constrains':'../niveles/level3_csv/level3_constraints.csv',
+	'terrain':'../niveles/level4_csv/level4_terrain.csv',
+	'respuestas_r':'../niveles/level4_csv/level4_respuestas_r.csv',
+	'respuestas_l':'../niveles/level4_csv/level4_respuestas_l.csv',
+	'player':'../niveles/level4_csv/level4_player.csv',
+	'enemies':'../niveles/level4_csv/level4_enemies.csv',
+	'ecuacion':'../niveles/level4_csv/level4_ecuacion.csv',
+	'constrains':'../niveles/level4_csv/level4_constraints.csv',
 	'node_pos':(880,210),
 	'node_graphics':'../imagenes/compu_nivel_5.png',
 	'unlock':5	
 }
 
 level_5 = {
-	'terrain':'../niveles/level3_csv/level3_terrain.csv',
-	'respuestas_r':'../niveles/level3_csv/level3_respuestas_r.csv',
-	'respuestas_l':'../niveles/level3_csv/level3_respuestas_l.csv',
-	'player':'../niveles/level3_csv/level3_player.csv',
-	'enemies':'../niveles/level3_csv/level3_enemies.csv',
-	'ecuacion':'../niveles/level3_csv/level3_ecuacion.csv',
-	'constrains':'../niveles/level3_csv/level3_constraints.csv',
+	'terrain':'../niveles/level5_csv/level5_terrain.csv',
+	'respuestas_r':'../niveles/level5_csv/level5_respuestas_r.csv',
+	'respuestas_l':'../niveles/level5_csv/level5_respuestas_l.csv',
+	'player':'../niveles/level5_csv/level5_player.csv',
+	'enemies':'../niveles/level5_csv/level5_enemies.csv',
+	'ecuacion':'../niveles/level5_csv/level5_ecuacion.csv',
+	'constrains':'../niveles/level5_csv/level5_constraints.csv',
 	'node_pos':(1050,400),
 	'node_graphics':'../imagenes/compu_nivel_6.png',
 	'unlock':5	
 }
 
-#level_4 = {'node_pos':(880,210),'content':'this is level 4', 'unlock':5,'node_graphics':'../imagenes/compu_nivel_5.png'}
-#level_5 = {'node_pos':(1050,400),'content':'this is level 5', 'unlock':5,'node_graphics':'../imagenes/compu_nivel_6.png'}
 
 levels = { 0:level_0,
            1:level_1,
