@@ -1,28 +1,41 @@
 # videojuego (aún en construcción)
-Videojuego estilo plataforma con fines didácticos, en este juego se practica la resolución de ecuaciones de primer grado con una variable.
+Videojuego estilo plataforma con fines didácticos, en este juego se practica la resolución de ecuaciones de primer grado con una variable. 
 
-#librerias usadas
+# librerias usadas
 
 pygame
 
-#como ejecutar el juego
+# Como ejecutar el juego
 
-compilar y ejecutar el archivo 'platformer.py'
+compilar y ejecutar el archivo **'platformer.py'**
 
-#version inicial
+# Como jugar
+Controles para navegar y jugar dentro del programa:
 
-compilar y ejecutar el archivo 'mathison.py'
+- Con las teclas flecha derecha, izquierda y arriba el jugador se desplaza a la dirección respectiva
 
-#como jugar
+- Para seleccionar una respuesta pon el personaje y presiona 'A'
 
-Con las teclas flecha derecha, izquierda y arriba el jugador se desplaza a la dirección respectiva
+- En el menu inicial presione 'Z' para iniciar
 
-Para seleccionar una respuesta pon el personaje y presiona 'a'
+- En el mapa de niveles con las teclas flecha derecha e izquierda ponga el cuadro azul en uno rojo y presione 'SPACE' para seleccionar un nivel y 'R' para regresar al menu
 
-En el menu inicial presione 'z' para iniciar
+- En el nivel presione 'RETURN' para regresar al mapa de niveles
 
-En el mapa de niveles con las teclas flecha derecha e izquierda ponga el cuadro azul en uno rojo y presione 'space' para seleccionar un nivel y 'r' para regresar al menu
+# Niveles
+Los niveles que se tienen hasta ahora son:
+- Nivel 1: Adición
+- Nivel 2: Multiplicación
+- Nivel 3: División
+- Nivel 4: ax + b = c
+- Nivel 5: a(x + b) = c
+- Nivel 6: a/(x + b)= c
 
-En el nivel presione 'return' para regresar al mapa de niveles
-
-
+## Cosas que restan hacer
+- Colisión con enemigos
+- Sistema de puntaje
+- Vidas
+- Hacer que las soluciones sean solo enteras
+- Agregar sonidos
+- Elaborar más niveles
+- Corregir el tamaño del salto y el número de saltos permitidos

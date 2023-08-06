@@ -15,7 +15,7 @@ class Respuestas(pygame.sprite.Sprite):
 		self.rect = self.mitexto.get_rect(topleft=pos)
 		self.W = self.mitexto.get_width()
 		self.H = self.mitexto.get_height()
-		self.image = pygame.image.load("../imagenes/respuesta.png").convert_alpha()
+		self.image = pygame.image.load("imagenes/respuesta.png").convert_alpha()
 		self.image = pygame.transform.scale(self.image, (self.W + 20,self.H))		
 		self.image.blit(self.mitexto,[10,0])
 		
@@ -23,11 +23,11 @@ class Respuestas(pygame.sprite.Sprite):
 		# (self.W + 20,self.H)
 	def revisar(self,respuesta_correcta,surface):
 		if respuesta_correcta ==float(self.texto):
-			calificacion = pygame.image.load("../imagenes/paloma.png").convert_alpha()
+			calificacion = pygame.image.load("imagenes/paloma.png").convert_alpha()
 			calificacion = pygame.transform.scale(calificacion,(self.size*2,self.size*2))
 			print(self.texto)
 		else:
-			calificacion = pygame.image.load("../imagenes/error.png").convert_alpha()
+			calificacion = pygame.image.load("imagenes/error.png").convert_alpha()
 			calificacion = pygame.transform.scale(calificacion,(self.size*2,self.size*2))					
 		surface.blit(calificacion,(screen_width/2,screen_height/2))   		
 
@@ -37,7 +37,7 @@ class Respuestas(pygame.sprite.Sprite):
 		self.rect.x += x_shift	
 		self.W = self.mitexto.get_width()
 		self.H = self.mitexto.get_height()
-		self.image = pygame.image.load("../imagenes/respuesta.png").convert_alpha()
+		self.image = pygame.image.load("imagenes/respuesta.png").convert_alpha()
 		self.image = pygame.transform.scale(self.image, (self.W + 20,self.H))		
 		self.image.blit(self.mitexto,[10,0])
 

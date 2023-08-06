@@ -11,7 +11,7 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
 		w = self.miTexto.get_width()
 		h = self.miTexto.get_height()
-		self.image = pygame.image.load("../imagenes/computer1.png").convert_alpha()
+		self.image = pygame.image.load("imagenes/computer1.png").convert_alpha()
 		self.image = pygame.transform.scale(self.image, (w+40,w*137/192))
 		#self.image = pygame.Surface((W + 20,H + 20))
 		self.image.blit(self.miTexto, [20,(w*137/192)/2-h/2])
@@ -22,7 +22,7 @@ class Ecuacion(pygame.sprite.Sprite):
 		#c = random.randint(1,10)		
 		if nivel == 0:
 			operacion = '+'
-			respuesta = b-a,2
+			respuesta = b-a
 		elif nivel == 1:
 			operacion = 'x'
 			respuesta = round(b/a,2)
@@ -51,6 +51,6 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
 		w = self.miTexto.get_width()
 		h = self.miTexto.get_height()
-		self.image = pygame.image.load("../imagenes/computer1.png").convert_alpha()
+		self.image = pygame.image.load("imagenes/computer1.png").convert_alpha()
 		self.image = pygame.transform.scale(self.image, (w+40,w*137/192))
 		self.image.blit(self.miTexto, [20,(w*137/192)/2-h/2])

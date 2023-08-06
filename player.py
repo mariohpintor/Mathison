@@ -18,9 +18,10 @@ class Player(pygame.sprite.Sprite):
 		self.speed = 8
 		self.gravity = 0.8
 		self.jump_speed = -12
+		self.facing_right = True
 
 	def import_character_assets(self):
-		character_path = '../imagenes/'
+		character_path = 'imagenes/'
 		self.animations = {'run':[]}
 
 		for animation in self.animations.keys():
@@ -34,16 +35,23 @@ class Player(pygame.sprite.Sprite):
 		if self.frame_index >= len(animation):
 			self.frame_index = 0
 		self.image = animation[int(self.frame_index)]
-		self.image = pygame.transform.scale(self.image, (48,96))	
+		self.image = pygame.transform.scale(self.image, (48,96))
 
+		if self.facing_right:
+			self.image = self.image
+		else:
+			flipped_image = pygame.transform.flip(self.image,True,False)
+			self.image = flipped_image
 
 	def get_input(self):
 	    keys = pygame.key.get_pressed()
 
 	    if keys[pygame.K_RIGHT]:
 	    	self.direction.x = 1
+	    	self.facing_right = True
 	    elif keys[pygame.K_LEFT]:
 	    	self.direction.x = -1
+	    	self.facing_right = False
 	    else:
 	        self.direction.x = 0	
 

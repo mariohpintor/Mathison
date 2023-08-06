@@ -75,7 +75,7 @@ class Level:
 					y = row_index*tile_size
 
 					if type == 'terrain':
-						terrain_tile_list = import_cut_graphics('../imagenes/terrain_tiles.png')
+						terrain_tile_list = import_cut_graphics('imagenes/terrain_tiles.png')
 						tile_surface = terrain_tile_list[int(val)]
 						sprite = StaticTile(tile_size,x,y,tile_surface)
 
@@ -105,7 +105,7 @@ class Level:
 					sprite = Player((x,y))
 					self.player.add(sprite)
 				if val == '1':
-					hat_surface = pygame.image.load('../clear_code/graphics/character/hat.png').convert_alpha()
+					hat_surface = pygame.image.load('imagenes/hat.png').convert_alpha()
 					sprite = StaticTile(tile_size,x,y,hat_surface)
 					self.goal.add(sprite)
 	
@@ -246,7 +246,7 @@ class Level:
 			self.create_overworld(self.current_level,self.new_max_level)
 			
 	def run(self):
-		fondo = pygame.image.load("../imagenes/fondos/university.jpeg").convert_alpha()
+		fondo = pygame.image.load("imagenes/fondos/university.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
 		self.input()
