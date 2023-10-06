@@ -6,6 +6,7 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.pos = pos
 		self.respuesta_correcta = self.generator(nivel)
 		self.color = 'red'
+		#self.texto = '¡Hola!'
 		self.main_font = pygame.font.SysFont('Arial Rounded MT Bold', size)
 		self.miTexto = self.main_font.render(self.texto, 0,self.color)
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
@@ -17,31 +18,46 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.image.blit(self.miTexto, [20,(w*137/192)/2-h/2])
 
 	def generator(self,nivel):
-		#SUMA positiva	
+		#SUMA 
 		if nivel == 0:
-			operacion = '+'
-			respuesta = b-a
+			a = random.randint(1,10)
+			b = a + random.randint(1,10)
+			self.texto = str(a) +' + ? ' + ' = ' + str(b)
+			respuesta = b - a
+		#RESTA
 		elif nivel == 1:
-			operacion = 'x'
-			respuesta = round(b/a,2)
+			a = random.randint(1,10)
+			b = a + random.randint(1,10)
+			self.texto = str(b) +' - ? ' + ' = ' + str(a)
+			respuesta = b - a
+		#ADICION
 		elif nivel == 2:
-			operacion = '/'
-			respuesta = round(a/b,2)
+			a = random.randint(1,10)
+			b = random.randint(1,10)
+			self.texto = str(a) +' + ? ' + ' = ' + str(b)
+			respuesta = b - a
+		#Multiplicacion entera
 		elif nivel == 3:
-			c = random.randint(1,10)
-			self.texto = str(a) + 'x + ' + str(b) + ' = ' + str(c)
-			respuesta = round((c-b)/a,2) 
+			a = random.randint(2,10)
+			b = random.randint(1,10)*a
+			self.texto = str(a) +' x  ? ' + ' = ' + str(b)
+			respuesta = b//a
+		#Division entera	
 		elif nivel == 4:
-			c = random.randint(1,10)
-			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
-			respuesta = round(c/a - b,2)
+			a = random.randint(2,10)
+			b = random.randint(1,10)*a
+			self.texto = str(b) +' /  ? ' + ' = ' + str(a)
+			respuesta = b//a
+		#FRACCIONES
+		#Combinacion producto
 		elif nivel == 5:
-			c = random.randint(1,10)
-			self.texto = str(a) + '/(x + ' + str(b) + ') = ' + str(c)
-			respuesta = round(a/c - b,2) 
+			a = random.randint(2,10)
+			b = random.randint(1,10)
+			c = random.randint(1,10)*a
+			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
+			respuesta = c//a - b
+		#Combinacion division
 
-		if nivel < 3:		
-			self.texto = str(a) +' ' + operacion +' ? ' + ' = ' + str(b)
 		return respuesta
 
 	def update(self):

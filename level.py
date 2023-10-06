@@ -80,10 +80,10 @@ class Level:
 						sprite = StaticTile(tile_size,x,y,tile_surface)
 
 					if type == 'respuestas_r':
-						sprite = Respuestas((x,y),tile_size,random.randint(-5,5))
+						sprite = Respuestas((x,y),tile_size,self.ecuacion.respuesta_correcta)
 
 					if type == 'respuestas_l':
-						sprite = Respuestas((x,y),tile_size,random.randint(-5,5))
+						sprite = Respuestas((x,y),tile_size,self.ecuacion.respuesta_correcta)
 
 					if type == 'enemies':
 						sprite = Enemy(tile_size,x,y)
@@ -122,41 +122,6 @@ class Level:
 		for enemy in self.enemy_sprites.sprites():
 			if pygame.sprite.spritecollide(enemy,self.constrains_sprites,False):
 				enemy.reverse()	
-		#------------------------------------------------------------------
-    #La función setup_level ya no se usa
-	def setup_level(self,layout,level):
-		self.level = level
-		self.tiles = pygame.sprite.Group()
-		self.player = pygame.sprite.GroupSingle()
-		self.ecuacion = pygame.sprite.GroupSingle()
-		self.respuestas_r = pygame.sprite.Group()
-		self.respuestas_l = pygame.sprite.Group()
-
-		for row_index, row in enumerate(layout):
-			for col_index, cell in enumerate(row):
-				x = col_index*tile_size
-				y = row_index*tile_size
-
-				if cell == 'X':    
-					tile = Tile((x,y),tile_size)
-					self.tiles.add(tile)			
-				if cell == 'P':    
-					player_sprite = Player((x,y))
-					self.player.add(player_sprite)
-				if cell == 'E':
-					self.ecuacion_sprite = Ecuacion((x,y),tile_size,self.level)
-					self.ecuacion.add(self.ecuacion_sprite)
-					#las respuestas empiezan en los sprites R
-				if cell == 'R':
-					respuesta_sprite_r = Respuestas((x,y),tile_size,random.randint(-5,5))
-
-					self.respuestas_r.add(respuesta_sprite_r)
-				if cell == 'L':
-					respuesta_sprite_l = Respuestas((x,y),tile_size,random.randint(-5,5))
-
-					self.respuestas_l.add(respuesta_sprite_l)			
-		sprite = random.choice(self.respuestas_r.sprites())
-		sprite.texto = 	str(self.ecuacion_sprite.respuesta_correcta)
 
 	def scroll_x(self):
 		player = self.player.sprite
@@ -223,7 +188,7 @@ class Level:
 			respuetas_temporal = []
 			self.ecuacion.respuesta_correcta = self.ecuacion.generator(self.current_level)         	
 			for sprite in type_sprites:
-				if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width + tile_size*4:
+				if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width + tile_size*6:
 					sprite.texto = str(random.randint(-5,5))
 					respuetas_temporal.append(sprite)
 
