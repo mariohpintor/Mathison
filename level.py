@@ -12,8 +12,9 @@ from support import *
 class Level:
 	def __init__(self,surface,current_level,create_overworld):
 		# general setup
+		self.calificacion = pygame.image.load("imagenes/manzana.png").convert_alpha()
+		self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
 		self.display_surface = surface
-		#self.setup_level(level_data,current_level)
 		self.world_shift = 0
 
 		# overworld connection
@@ -24,8 +25,6 @@ class Level:
 
 		self.alternancia_r = 0
 		self.alternancia_l = 0
-		
-		#Código nuevo ------------------
 
 		#player 
 		player_layout = import_csv_layout(level_data['player'])
@@ -34,7 +33,6 @@ class Level:
 		self.player_setup(player_layout)
 
 		#ecuacion
-		#self.ecuacion = pygame.sprite.GroupSingle()
 		ecuacion_layout = import_csv_layout(level_data['ecuacion'])
 		self.ecuacion_group= pygame.sprite.GroupSingle()
 		self.ecuacion_setup(ecuacion_layout)
@@ -177,7 +175,8 @@ class Level:
 			self.alternancia_r = 0
 
 		if self.alternancia_r == 1 or self.alternancia_l == 1:
-			sprite.revisar(self.ecuacion.respuesta_correcta,self.display_surface)
+			#sprite.revisar(self.ecuacion.respuesta_correcta,self.display_surface)
+			self.calificacion = sprite.revisar(self.ecuacion.respuesta_correcta,self.display_surface)
 			for sprite in type_sprites:
 				sprite.texto = 'x'			
 			if self.alternancia_r == 1:
@@ -216,29 +215,17 @@ class Level:
 		self.display_surface.blit(fondo,(0,0))
 		self.input()
 
-		#self.tiles.update(self.world_shift)
-		#self.tiles.draw(self.display_surface)
-
 		self.scroll_x()
 
-		#self.player.update()
 		self.horizontal_movement_collision(self.terrain_sprites.sprites())
 		self.vertical_movement_collision(self.terrain_sprites.sprites())
 
 		self.horizontal_movement_collision(self.respuestas_r_sprites.sprites())
 		self.vertical_movement_collision(self.respuestas_r_sprites.sprites())
 		self.horizontal_movement_collision(self.respuestas_l_sprites.sprites())
-		self.vertical_movement_collision(self.respuestas_l_sprites.sprites())		
-		#self.player.draw(self.display_surface)
+		self.vertical_movement_collision(self.respuestas_l_sprites.sprites())
 
-		'''
-		self.respuestas_r.update(self.world_shift)
-		self.respuestas_r.draw(self.display_surface)
-		self.respuestas_l.update(self.world_shift)
-		self.respuestas_l.draw(self.display_surface)
-		'''
-
-		#Código nuevo ---------------------------------
+		self.display_surface.blit(self.calificacion,(screen_width/2,screen_height/2)) 	
 
 		self.terrain_sprites.update(self.world_shift)
 		self.terrain_sprites.draw(self.display_surface)
@@ -265,7 +252,5 @@ class Level:
 
 		self.check_death()
 		self.check_win()
-
-		#------------------------------------------------------------------
 
 

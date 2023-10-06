@@ -26,7 +26,8 @@ class Respuestas(pygame.sprite.Sprite):
 		else:
 			calificacion = pygame.image.load("imagenes/error.png").convert_alpha()
 		calificacion = pygame.transform.scale(calificacion,(self.size*2,self.size*2))
-		surface.blit(calificacion,(screen_width/2,screen_height/2))   		
+		return calificacion
+		#surface.blit(calificacion,(screen_width/2,screen_height/2))   		
 
 	def update(self, x_shift):
 		self.mitexto = self.main_font.render(self.texto, True,self.color)
