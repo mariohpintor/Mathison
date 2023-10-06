@@ -17,9 +17,7 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.image.blit(self.miTexto, [20,(w*137/192)/2-h/2])
 
 	def generator(self,nivel):
-		a = random.randint(1,10)
-		b = random.randint(1,10)
-		#c = random.randint(1,10)		
+		#SUMA positiva	
 		if nivel == 0:
 			operacion = '+'
 			respuesta = b-a

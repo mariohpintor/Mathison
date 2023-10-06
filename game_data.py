@@ -32,7 +32,7 @@ level_2 = {
 	'player':'niveles/level2_csv/level2_player.csv',
 	'enemies':'niveles/level2_csv/level2_enemies.csv',
 	'ecuacion':'niveles/level2_csv/level2_ecuacion.csv',
-	'constrains':'../niveles/level2_csv/level2_constraints.csv',
+	'constrains':'niveles/level2_csv/level2_constraints.csv',
 	'node_pos':(480,610),
 	'node_graphics':'imagenes/compu_nivel_3.png',
 	'unlock':3	
@@ -65,13 +65,13 @@ level_4 = {
 }
 
 level_5 = {
-	'terrain':'../niveles/level5_csv/level5_terrain.csv',
-	'respuestas_r':'../niveles/level5_csv/level5_respuestas_r.csv',
-	'respuestas_l':'../niveles/level5_csv/level5_respuestas_l.csv',
-	'player':'../niveles/level5_csv/level5_player.csv',
-	'enemies':'../niveles/level5_csv/level5_enemies.csv',
-	'ecuacion':'../niveles/level5_csv/level5_ecuacion.csv',
-	'constrains':'../niveles/level5_csv/level5_constraints.csv',
+	'terrain':'niveles/level5_csv/level5_terrain.csv',
+	'respuestas_r':'niveles/level5_csv/level5_respuestas_r.csv',
+	'respuestas_l':'niveles/level5_csv/level5_respuestas_l.csv',
+	'player':'niveles/level5_csv/level5_player.csv',
+	'enemies':'niveles/level5_csv/level5_enemies.csv',
+	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
+	'constrains':'niveles/level5_csv/level5_constraints.csv',
 	'node_pos':(1050,400),
 	'node_graphics':'imagenes/compu_nivel_6.png',
 	'unlock':5	
