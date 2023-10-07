@@ -8,7 +8,6 @@ from enemies import Enemy
 from game_data import *
 from support import *
 
-
 class Level:
 	def __init__(self,surface,current_level,create_overworld):
 		# general setup
@@ -210,7 +209,7 @@ class Level:
 			self.create_overworld(self.current_level,self.new_max_level)
 			
 	def run(self):
-		fondo = pygame.image.load("imagenes/fondos/university.jpeg").convert_alpha()
+		fondo = pygame.image.load(levels[self.current_level]['background']).convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
 		self.input()

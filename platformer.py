@@ -4,6 +4,7 @@ from level import Level
 from overworld import Overworld
 from initial_menu import Imenu
 
+
 class Game:
 	def __init__(self):
 		self.max_level = 0
@@ -33,7 +34,6 @@ class Game:
 			self.level.run()
 		else:
 			self.initial_menu.run()	
-		#self.level.run()	
 
 pygame.init()
 pygame.display.set_caption("Mathison begins")

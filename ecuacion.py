@@ -57,6 +57,12 @@ class Ecuacion(pygame.sprite.Sprite):
 			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
 			respuesta = c//a - b
 		#Combinacion division
+		else:
+			a = random.randint(2,10)
+			b = random.randint(1,10)
+			c = random.randint(1,10)*a
+			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
+			respuesta = c//a - b
 
 		return respuesta
 
