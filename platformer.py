@@ -11,6 +11,7 @@ class Game:
 		#self.overworld = Overworld(0,self.max_level,screen,self.create_level,self.create_initial_menu)
 		self.status = 'menu'
 		self.initial_menu = Imenu(screen, self.create_overworld)
+		self.contador = 0
 
 	def create_level(self,current_level):
 		self.level = Level(screen,current_level,self.create_overworld)

@@ -7,6 +7,7 @@ from respuestas import Respuestas
 from enemies import Enemy
 from game_data import *
 from support import *
+import time
 
 class Level:
 	def __init__(self,surface,current_level,create_overworld):
@@ -15,6 +16,10 @@ class Level:
 		self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
 		self.display_surface = surface
 		self.world_shift = 0
+
+		self.tiempo = time.time()
+		self.contador_palomas = 0
+		self.contador_ecuaciones = 0
 
 		# overworld connection
 		self.create_overworld = create_overworld
@@ -175,7 +180,7 @@ class Level:
 
 		if self.alternancia_r == 1 or self.alternancia_l == 1:
 			#sprite.revisar(self.ecuacion.respuesta_correcta,self.display_surface)
-			self.calificacion = sprite.revisar(self.ecuacion.respuesta_correcta,self.display_surface)
+			self.calificacion, self.contador_palomas, self.contador_ecuaciones = sprite.revisar(self.ecuacion.respuesta_correcta,self.contador_palomas,self.contador_ecuaciones)
 			for sprite in type_sprites:
 				sprite.texto = 'x'			
 			if self.alternancia_r == 1:
@@ -192,22 +197,33 @@ class Level:
 
 			sprite = random.choice(respuetas_temporal)	
 			sprite.texto = 	str(self.ecuacion.respuesta_correcta)				
+    
+	def pantalla_resultados(self):
+		tiempo = time.time()-self.tiempo
+		print('Tiempo: ',tiempo)
+		print('Buenas: ',self.contador_palomas)
+		print('Errores: ',self.contador_ecuaciones-self.contador_palomas)
+		print('Puntaje: ',round(tiempo,2)*100-self.contador_ecuaciones*100+self.contador_palomas*10)
+
 
 	def input(self):
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_RETURN]:
 			self.create_overworld(self.current_level,self.new_max_level)
+			self.pantalla_resultados()
 		if keys[pygame.K_ESCAPE]:
 			self.create_overworld(self.current_level,0)
 
 	def check_death(self):
 		if self.player.sprite.rect.top > screen_height:
 			self.create_overworld(self.current_level,0)
+			self.pantalla_resultados()
 
 	def check_win(self):
 		if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):
 			self.create_overworld(self.current_level,self.new_max_level)
-			
+			self.pantalla_resultados()
+
 	def run(self):
 		fondo = pygame.image.load(levels[self.current_level]['background']).convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
