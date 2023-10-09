@@ -44,3 +44,13 @@ screen_height = 14*tile_size
 #tipo de ecuacion relativo al nivel
 number_level0 = 0
 number_level1 = 1
+
+'''
+elif nivel == 6:
+	a = random.randint(2,10)
+	b = random.randint(1,10)
+	c = random.randint(2,10)
+	d = random.randint(1,10)	
+	self.texto = str(b)+'/'+str(a) + str(d)+'/'+str(c)
+	respuesta = d*a + b*c / a*c
+'''

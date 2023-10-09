@@ -18,7 +18,7 @@ class Imenu:
 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_z]:
-			self.create_overworld(0,7)
+			self.create_overworld(0,0)
 
 		fondo = pygame.image.load("imagenes/fondos/main_menu1.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 

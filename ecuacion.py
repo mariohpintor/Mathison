@@ -48,7 +48,7 @@ class Ecuacion(pygame.sprite.Sprite):
 			b = random.randint(1,10)*a
 			self.texto = str(b) +' /  ? ' + ' = ' + str(a)
 			respuesta = b//a
-		#FRACCIONES
+
 		#Combinacion producto
 		elif nivel == 5:
 			a = random.randint(2,10)
@@ -56,6 +56,7 @@ class Ecuacion(pygame.sprite.Sprite):
 			c = random.randint(1,10)*a
 			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
 			respuesta = c//a - b
+		#Suma de FRACCIONES
 		#Combinacion division
 		else:
 			a = random.randint(2,10)

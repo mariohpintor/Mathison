@@ -2,8 +2,9 @@ import pygame, sys
 from game_data import screen_width,screen_height
 
 class Pantalla_resultados:
-	def __init__(self,surface,create_overworld,inicio,palomas,ecuaciones,fin):
+	def __init__(self,surface,create_overworld,inicio,palomas,ecuaciones,fin,new_max_level):
 		self.surface = surface
+		self.new_max_level = new_max_level
 		self.create_overworld = create_overworld
 		self.main_font = pygame.font.SysFont("Courier", 80)
 		self.sub_font = pygame.font.SysFont("Courier", 40)
@@ -29,7 +30,7 @@ class Pantalla_resultados:
 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_z]:
-			self.create_overworld(0,7)
+			self.create_overworld(0,self.new_max_level)
 
 
 		self.surface.blit(fondo,(0,0))

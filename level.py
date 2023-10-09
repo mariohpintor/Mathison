@@ -203,21 +203,19 @@ class Level:
 		if keys[pygame.K_RETURN]:
 			#self.create_overworld(self.current_level,self.new_max_level)
 			fin = time.time()
-			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin)
-		if keys[pygame.K_ESCAPE]:
-			self.create_overworld(self.current_level,0)
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level)
 
 	def check_death(self):
 		if self.player.sprite.rect.top > screen_height:
 			#self.create_overworld(self.current_level,0)
 			fin = time.time()
-			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin)
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level)
 
 	def check_win(self):
 		if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):
 			#self.create_overworld(self.current_level,self.new_max_level)
 			fin = time.time()
-			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin)
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level)
 
 	def run(self):
 		fondo = pygame.image.load(levels[self.current_level]['background']).convert_alpha()

@@ -27,9 +27,9 @@ class Game:
 		self.initial_menu = Imenu(screen,self.create_overworld)
 		self.status = 'menu'
 
-	def create_results(self,surface,inicio,palomas,ecuaciones,fin):
+	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level):
 		self.status = 'results'
-		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin)
+		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin,new_max_level)
 
 
 	def run(self):
