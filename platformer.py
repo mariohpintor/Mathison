@@ -4,32 +4,37 @@ from level import Level
 from overworld import Overworld
 from initial_menu import Imenu
 from screen_resultados import Pantalla_resultados
+from creditos import Creditos
 
 class Game:
 	def __init__(self):
 		self.max_level = 0
 		#self.overworld = Overworld(0,self.max_level,screen,self.create_level,self.create_initial_menu)
 		self.status = 'menu'
-		self.initial_menu = Imenu(screen, self.create_overworld)
+		self.initial_menu = Imenu(screen, self.create_overworld,self.create_creditos)
 		self.contador = 0
 
 	def create_level(self,current_level):
 		self.level = Level(screen,current_level,self.create_results)
 		self.status = 'level'
 
-	def  create_overworld(self,current_level, new_max_level):
+	def create_overworld(self,current_level, new_max_level):
 		if new_max_level > self.max_level:
 			self.max_level = new_max_level
 		self.overworld = Overworld(current_level,self.max_level,screen,self.create_level,self.create_initial_menu)
 		self.status = 'overworld'
 
 	def create_initial_menu(self):
-		self.initial_menu = Imenu(screen,self.create_overworld)
+		self.initial_menu = Imenu(screen,self.create_overworld,self.create_creditos)
 		self.status = 'menu'
 
-	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level):
+	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level,meta):
 		self.status = 'results'
-		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin,new_max_level)
+		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin,new_max_level,meta)
+
+	def create_creditos(self,surface):
+		self.status = 'creditos'
+		self.creditos = Creditos(surface,self.create_initial_menu)
 
 
 	def run(self):
@@ -39,8 +44,10 @@ class Game:
 			self.level.run()
 		elif self.status == 'menu':
 			self.initial_menu.run()
-		else:
+		elif self.status == 'results':
 			self.pantalla_results.run()
+		else:
+			self.creditos.run()
 
 pygame.init()
 pygame.display.set_caption("Mathison begins")

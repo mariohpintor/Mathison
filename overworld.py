@@ -114,7 +114,7 @@ class Overworld:
 		instrucciones1_rect = instrucciones1.get_rect(center=(screen_width/2,60))
 		instrucciones2 = self.main_font.render('Player se mueve con las flechas del teclado y con [A] selecciona la respuesta',0,'white')
 		instrucciones2_rect = instrucciones2.get_rect(center=(screen_width/2,screen_height-50))
-		fondo = pygame.image.load("imagenes/fondos/computer_evolution.jpeg").convert_alpha()
+		fondo = pygame.image.load("imagenes/fondos/countryside2.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
 		self.display_surface.blit(instrucciones1,instrucciones1_rect)
