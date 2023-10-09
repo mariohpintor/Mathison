@@ -1,5 +1,5 @@
 import pygame, sys
-from settings import *
+from game_data import screen_width,screen_height
 
 class Imenu:
 	def __init__(self,surface,create_overworld):

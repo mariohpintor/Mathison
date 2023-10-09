@@ -1,13 +1,44 @@
-from overworld import Overworld
+import pygame, sys
+from game_data import screen_width,screen_height
 
 class Pantalla_resultados:
-	def __init__(self,surface,current_level):
-		self.display_surface = surface
-		self.current_level = current_level
+	def __init__(self,surface,create_overworld,inicio,palomas,ecuaciones,fin):
+		self.surface = surface
+		self.create_overworld = create_overworld
+		self.main_font = pygame.font.SysFont("Courier", 80)
+		self.sub_font = pygame.font.SysFont("Courier", 40)
+		self.tiempo = round(fin-inicio,2)
+		self.palomas = palomas
+		self.errores = ecuaciones - palomas
+		self.puntaje = round(self.tiempo,2)*100 - self.palomas*10 + self.errores*100
 
-	def pantalla_resultados(self):
-		tiempo = time.time()-self.tiempo
-		print('Tiempo: ',tiempo)
-		print('Buenas: ',self.contador_palomas)
-		print('Errores: ',self.contador_ecuaciones-self.contador_palomas)
-		print('Puntaje: ',round(tiempo,2)*100-self.contador_ecuaciones*100+self.contador_palomas*10)
+		self.tiempo = self.main_font.render('Tiempo: '+str(self.tiempo) +' seg.', 0, (255, 255, 255))
+		self.palomas = self.main_font.render('Correctas: '+str(self.palomas), 0, (255, 255, 255))
+		self.errores = self.main_font.render('Errores: '+str(self.errores), 0, (255, 255, 255))
+		self.puntaje = self.main_font.render('Puntaje: '+str(self.puntaje), 0, (255, 255, 255))
+		self.mensaje = self.sub_font.render('Presiona [Z] para regresar al mapa', 0, (255, 255, 255))
+
+	def run(self):
+		tiempo_rect = self.tiempo.get_rect(center=(screen_width/2,screen_height/2-300))
+		palomas_rect = self.palomas.get_rect(center=(screen_width/2,screen_height/2-150))
+		errores_rect = self.errores.get_rect(center=(screen_width/2,screen_height/2))
+		puntaje_rect = self.puntaje.get_rect(center=(screen_width/2,screen_height/2+150))
+		mensaje_rect = self.mensaje.get_rect(center=(screen_width/2,screen_height/2+300))
+		fondo = pygame.image.load("imagenes/fondos/taller.jpeg").convert_alpha()
+		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
+
+		keys = pygame.key.get_pressed()
+		if keys[pygame.K_z]:
+			self.create_overworld(0,7)
+
+
+		self.surface.blit(fondo,(0,0))
+		#pygame.draw.rect(self.surface, (0, 0, 0), miTexto_rect)
+		#pygame.draw.rect(self.surface, (0, 0, 0), subtitulo_rect)
+		self.surface.blit(self.tiempo,tiempo_rect)
+		self.surface.blit(self.palomas,palomas_rect)
+		self.surface.blit(self.errores,errores_rect)
+		self.surface.blit(self.puntaje,puntaje_rect)
+		self.surface.blit(self.mensaje,mensaje_rect)
+
+	

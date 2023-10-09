@@ -120,3 +120,8 @@ levels = { 0:level_0,
            5:level_5,
            6:level_6,
            7:level_7}
+
+#Configuracion de la pantalla
+tile_size = 64
+screen_width = tile_size*20
+screen_height = 14*tile_size

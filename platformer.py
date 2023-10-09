@@ -1,9 +1,9 @@
 import pygame, sys
-from settings import *
+from game_data import screen_width,screen_height
 from level import Level
 from overworld import Overworld
 from initial_menu import Imenu
-
+from screen_resultados import Pantalla_resultados
 
 class Game:
 	def __init__(self):
@@ -14,7 +14,7 @@ class Game:
 		self.contador = 0
 
 	def create_level(self,current_level):
-		self.level = Level(screen,current_level,self.create_overworld)
+		self.level = Level(screen,current_level,self.create_results)
 		self.status = 'level'
 
 	def  create_overworld(self,current_level, new_max_level):
@@ -27,14 +27,20 @@ class Game:
 		self.initial_menu = Imenu(screen,self.create_overworld)
 		self.status = 'menu'
 
+	def create_results(self,surface,inicio,palomas,ecuaciones,fin):
+		self.status = 'results'
+		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin)
+
 
 	def run(self):
 		if self.status == 'overworld':
 			self.overworld.run()
 		elif self.status == 'level':
 			self.level.run()
+		elif self.status == 'menu':
+			self.initial_menu.run()
 		else:
-			self.initial_menu.run()	
+			self.pantalla_results.run()
 
 pygame.init()
 pygame.display.set_caption("Mathison begins")

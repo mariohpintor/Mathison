@@ -10,19 +10,19 @@ from support import *
 import time
 
 class Level:
-	def __init__(self,surface,current_level,create_overworld):
+	def __init__(self,surface,current_level,create_results):
 		# general setup
 		self.calificacion = pygame.image.load("imagenes/manzana.png").convert_alpha()
 		self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
 		self.display_surface = surface
 		self.world_shift = 0
 
-		self.tiempo = time.time()
+		self.inicio = time.time()
 		self.contador_palomas = 0
 		self.contador_ecuaciones = 0
 
 		# overworld connection
-		self.create_overworld = create_overworld
+		self.create_results = create_results
 		self.current_level = current_level
 		level_data = levels[self.current_level]
 		self.new_max_level = level_data['unlock']
@@ -197,32 +197,27 @@ class Level:
 
 			sprite = random.choice(respuetas_temporal)	
 			sprite.texto = 	str(self.ecuacion.respuesta_correcta)				
-    
-	def pantalla_resultados(self):
-		tiempo = time.time()-self.tiempo
-		print('Tiempo: ',tiempo)
-		print('Buenas: ',self.contador_palomas)
-		print('Errores: ',self.contador_ecuaciones-self.contador_palomas)
-		print('Puntaje: ',round(tiempo,2)*100-self.contador_ecuaciones*100+self.contador_palomas*10)
-
 
 	def input(self):
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_RETURN]:
-			self.create_overworld(self.current_level,self.new_max_level)
-			self.pantalla_resultados()
+			#self.create_overworld(self.current_level,self.new_max_level)
+			fin = time.time()
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin)
 		if keys[pygame.K_ESCAPE]:
 			self.create_overworld(self.current_level,0)
 
 	def check_death(self):
 		if self.player.sprite.rect.top > screen_height:
-			self.create_overworld(self.current_level,0)
-			self.pantalla_resultados()
+			#self.create_overworld(self.current_level,0)
+			fin = time.time()
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin)
 
 	def check_win(self):
 		if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):
-			self.create_overworld(self.current_level,self.new_max_level)
-			self.pantalla_resultados()
+			#self.create_overworld(self.current_level,self.new_max_level)
+			fin = time.time()
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin)
 
 	def run(self):
 		fondo = pygame.image.load(levels[self.current_level]['background']).convert_alpha()

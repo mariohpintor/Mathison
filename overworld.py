@@ -1,6 +1,5 @@
 import pygame
 from game_data import *
-from settings import screen_width,screen_height,tile_size
 
 class Node(pygame.sprite.Sprite):
 	def __init__(self,pos,status,icon_speed,path):
