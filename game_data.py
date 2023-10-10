@@ -79,7 +79,7 @@ level_5 = {
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
 	'node_pos':(1100,600),
 	'node_graphics':'imagenes/compu_nivel_6.png',
-	'unlock':5,
+	'unlock':6,
 	'background': 'imagenes/fondos/base.jpeg'	
 }
 
@@ -93,7 +93,7 @@ level_6 = {
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
 	'node_pos':(1100,400),
 	'node_graphics':'imagenes/compu_nivel_6.png',
-	'unlock':6,
+	'unlock':7,
 	'background': 'imagenes/fondos/base.jpeg'
 }
 

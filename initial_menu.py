@@ -1,5 +1,6 @@
 import pygame, sys
 from game_data import screen_width,screen_height
+import csv
 
 class Imenu:
 	def __init__(self,surface,create_overworld,create_credits):
@@ -14,7 +15,7 @@ class Imenu:
 		subtitulo = self.sub_font.render("[Un juego de ecuaciones]", 0, (255, 255, 255))
 		nuevo_text = self.sub_font.render("Nueva partida [N]", 0, (255, 255, 255))
 		continuar_text = self.sub_font.render("Continuar partida [C]", 0, (255, 255, 255))
-		creditos_text = self.sub_font.render("Creditos [D]", 0, (255, 255, 255))
+		creditos_text = self.sub_font.render("Créditos [D]", 0, (255, 255, 255))
 
 		miTexto_rect = miTexto.get_rect(center=(screen_width/2,screen_height/2-250))
 		subtitulo_rect = subtitulo.get_rect(center=(screen_width/2,screen_height/2-150))
@@ -26,9 +27,24 @@ class Imenu:
 		if keys[pygame.K_n]:
 			self.create_overworld(0,0)
 		elif keys[pygame.K_c]:
-			#leer archivo
-			nivel_max = 6
-			self.create_overworld(0,nivel_max)
+			archivo_csv = 'datos.csv'  # Nombre del archivo CSV
+
+			# Inicializa una variable para almacenar el valor máximo
+			max_nuevo_max_level = -1
+
+			# Abre el archivo CSV en modo lectura
+			with open(archivo_csv, 'r', newline='') as archivo:
+				lector_csv = csv.DictReader(archivo)
+    
+			# Itera sobre las filas del archivo CSV
+				for fila in lector_csv:
+					nuevo_max_level = int(fila['nivel'])
+        
+			# Comprueba si el valor actual es mayor que el máximo encontrado hasta ahora
+					if nuevo_max_level > max_nuevo_max_level:
+						max_nuevo_max_level = nuevo_max_level
+
+			self.create_overworld(0,max_nuevo_max_level)
 		elif keys[pygame.K_d]:
 			self.create_credits(self.surface)
 
