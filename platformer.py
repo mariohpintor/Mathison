@@ -8,7 +8,7 @@ from creditos import Creditos
 
 class Game:
 	def __init__(self):
-		self.max_level = 0
+		#self.max_level = 0
 		#self.overworld = Overworld(0,self.max_level,screen,self.create_level,self.create_initial_menu)
 		self.status = 'menu'
 		self.initial_menu = Imenu(screen, self.create_overworld,self.create_creditos)
@@ -19,9 +19,9 @@ class Game:
 		self.status = 'level'
 
 	def create_overworld(self,current_level, new_max_level):
-		if new_max_level > self.max_level:
-			self.max_level = new_max_level
-		self.overworld = Overworld(current_level,self.max_level,screen,self.create_level,self.create_initial_menu)
+		#if new_max_level > self.max_level:
+			#self.max_level = new_max_level
+		self.overworld = Overworld(current_level,new_max_level,screen,self.create_level,self.create_initial_menu)
 		self.status = 'overworld'
 
 	def create_initial_menu(self):

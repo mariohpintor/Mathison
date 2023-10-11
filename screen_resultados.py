@@ -14,8 +14,7 @@ class Pantalla_resultados:
 		self.tiempo = round(fin-inicio,2)
 		self.palomas = palomas
 		self.errores = ecuaciones - palomas
-		self.puntaje = round(self.tiempo,2)*100 - self.palomas*10 + self.errores*100
-
+		self.puntaje = round(self.tiempo*100 - self.palomas*10 + self.errores*100,2)
 
 		# Definir los datos que deseas agregar en formato de lista
 		nuevo_registro = [self.new_max_level-1, self.tiempo, self.palomas, self.errores, self.puntaje]
@@ -46,7 +45,7 @@ class Pantalla_resultados:
 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_z]:
-			if self.palomas < 5 and not(self.meta):
+			if self.palomas < 5 or not(self.meta):
 				self.new_max_level-=1
 			self.create_overworld(0,self.new_max_level)
 
