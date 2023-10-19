@@ -21,7 +21,7 @@ class Respuestas(pygame.sprite.Sprite):
 		
 	def revisar(self,respuesta_correcta,contador_palomas,contador_ecuaciones):
 		contador_ecuaciones+=1
-		if respuesta_correcta ==float(self.texto):
+		if respuesta_correcta ==self.texto:
 			calificacion = pygame.image.load("imagenes/paloma.png").convert_alpha()
 			contador_palomas+=1
 		else:

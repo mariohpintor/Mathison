@@ -193,7 +193,10 @@ class Level:
 			self.ecuacion.respuesta_correcta = self.ecuacion.generator(self.current_level)         	
 			for sprite in type_sprites:
 				if screen_width/4 < sprite.rect.x and sprite.rect.x < screen_width + tile_size*6:
-					sprite.texto = str(random.randint(-5,5))
+					if self.current_level == 2:
+						sprite.texto = str(random.randint(-10,10))
+					else:
+						sprite.texto = str(random.randint(1,10))
 					respuetas_temporal.append(sprite)
 
 			sprite = random.choice(respuetas_temporal)	

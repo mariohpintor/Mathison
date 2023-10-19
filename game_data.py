@@ -92,7 +92,7 @@ level_6 = {
 	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
 	'node_pos':(1100,400),
-	'node_graphics':'imagenes/compu_nivel_6.png',
+	'node_graphics':'imagenes/compu_nivel_7.png',
 	'unlock':7,
 	'background': 'imagenes/fondos/base.jpeg'
 }
@@ -106,8 +106,8 @@ level_7 = {
 	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
 	'node_pos':(1100,200),
-	'node_graphics':'imagenes/compu_nivel_6.png',
-	'unlock':7,
+	'node_graphics':'imagenes/compu_nivel_8.png',
+	'unlock':8,
 	'background': 'imagenes/fondos/bar.jpeg'
 }
 
@@ -117,7 +117,9 @@ levels = { 0:level_0,
            2:level_2,
            3:level_3,
            4:level_4,
-           5:level_5}
+           5:level_5,
+           6:level_6,
+           7:level_7}
 
 #Configuracion de la pantalla
 tile_size = 64

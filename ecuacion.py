@@ -54,18 +54,25 @@ class Ecuacion(pygame.sprite.Sprite):
 			a = random.randint(2,10)
 			b = random.randint(1,10)
 			c = random.randint(1,10)*a
-			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
+			self.texto = str(a) + '(? + ' + str(b) + ') = ' + str(c)
 			respuesta = c//a - b
-		#Suma de FRACCIONES
 		#Combinacion division
-		else:
+		elif nivel == 6:
 			a = random.randint(2,10)
 			b = random.randint(1,10)
 			c = random.randint(1,10)*a
-			self.texto = str(a) + '(x + ' + str(b) + ') = ' + str(c)
+			self.texto = str(c) + '/(? + ' + str(b) + ') = ' + str(a)
 			respuesta = c//a - b
+		else:
+			#Suma de FRACCIONES
+			a = random.randint(1,10)
+			b = random.randint(2,10)
+			c = random.randint(1,10)
+			d = random.randint(2,10)
+			self.texto = str(a)+'/'+str(b)+'+'+str(c)+'/'+str(d)+'= ?'
+			respuesta = str(a*d + b*c)+'/'+ str(c*d)
 
-		return respuesta
+		return str(respuesta)
 
 	def update(self):
 		self.miTexto = self.main_font.render(self.texto, 0,self.color)
