@@ -63,7 +63,7 @@ class Overworld:
 	def draw_paths(self):
 		if self.max_level > 0:
 			points = [node['node_pos'] for index,node in enumerate(levels.values()) if index<=self.max_level]
-			pygame.draw.lines(self.display_surface,'white', False, points,10)
+			pygame.draw.lines(self.display_surface,'red', False, points,10)
 		else:
 			pass
 
@@ -109,16 +109,19 @@ class Overworld:
 			#self.icon.sprite.rect.center = self.nodes.sprites()[self.current_level].rect.center
 
 	def run(self):
-		self.main_font = pygame.font.SysFont("Arial Rounded MT Bold", 20)
-		instrucciones1 = self.main_font.render('Presiona [SPACE] para seleccionar nivel y muevete con [LEFT] y [RIGHT]',0,'white')
+		self.main_font = pygame.font.SysFont("Arial Rounded MT Bold", 28)
+		instrucciones1 = self.main_font.render('Presiona [SPACE] para seleccionar nivel y muevete con [LEFT] y [RIGHT]',0,'black')
 		instrucciones1_rect = instrucciones1.get_rect(center=(screen_width/2,60))
-		instrucciones2 = self.main_font.render('Player se mueve con las flechas del teclado y con [A] selecciona la respuesta',0,'white')
-		instrucciones2_rect = instrucciones2.get_rect(center=(screen_width/2,screen_height-50))
+		instrucciones2 = self.main_font.render('Player se mueve con las flechas del teclado y con [A] selecciona la respuesta',0,'black')
+		instrucciones2_rect = instrucciones2.get_rect(center=(screen_width/2,screen_height-100))
+		instrucciones3 = self.main_font.render('Para avanzar de nivel: ¡Llega al final y ten 5 respuestas correctas!',0,'black')
+		instrucciones3_rect = instrucciones3.get_rect(center=(screen_width/2,screen_height-50))
 		fondo = pygame.image.load("imagenes/fondos/countryside2.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
 		self.display_surface.blit(instrucciones1,instrucciones1_rect)
 		self.display_surface.blit(instrucciones2,instrucciones2_rect)
+		self.display_surface.blit(instrucciones3,instrucciones3_rect)
 		self.input()
 		self.update_icon_pos()
 		self.icon.update()
