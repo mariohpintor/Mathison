@@ -16,18 +16,6 @@ class Pantalla_resultados:
 		self.errores = ecuaciones - palomas
 		self.puntaje = round(self.tiempo*100 - self.palomas*10 + self.errores*100,2)
 
-		# Definir los datos que deseas agregar en formato de lista
-		nuevo_registro = [self.new_max_level-1, self.tiempo, self.palomas, self.errores, self.puntaje]
-
-		# Nombre del archivo CSV
-		archivo_csv = 'datos.csv'
-
-		# Abrir el archivo en modo agregar (si no existe, se crea)
-		with open(archivo_csv, 'a', newline='') as archivo:
-		    escritor_csv = csv.writer(archivo)
-		    # Agregar los datos como una fila en el archivo CSV
-		    escritor_csv.writerow(nuevo_registro)
-
 		self.tiempo_text  = self.main_font.render('Tiempo: '+str(self.tiempo) +' seg.', 0, (255, 255, 255))
 		self.palomas_text = self.main_font.render('Correctas: '+str(self.palomas), 0, (255, 255, 255))
 		self.errores = self.main_font.render('Errores: '+str(self.errores), 0, (255, 255, 255))
