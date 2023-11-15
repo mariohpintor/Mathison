@@ -118,7 +118,8 @@ levels = { 0:level_0,
            3:level_3,
            4:level_4,
            5:level_5,
-           6:level_6}
+           6:level_6,
+           7:level_7}
 
 #Configuracion de la pantalla
 tile_size = 64

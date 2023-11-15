@@ -33,9 +33,9 @@ class Pantalla_resultados:
 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_z]:
-			if self.palomas < 5 or not(self.meta):
-				self.new_max_level-=1
-			self.create_overworld(0,self.new_max_level)
+			#if self.palomas < 5 or not(self.meta):
+			#	self.new_max_level-=1
+			self.create_overworld(0,7)#mientras se prueba
 
 
 		self.surface.blit(fondo,(0,0))

@@ -22,47 +22,55 @@ class Ecuacion(pygame.sprite.Sprite):
 		if nivel == 0:
 			a = random.randint(1,10)
 			b = a + random.randint(1,10)
-			self.texto = str(a) +' + ? ' + ' = ' + str(b)
+			self.texto = str(a) +' + x ' + ' = ' + str(b)
 			respuesta = b - a
 		#RESTA
 		elif nivel == 1:
 			a = random.randint(1,10)
 			b = a + random.randint(1,10)
-			self.texto = str(b) +' - ? ' + ' = ' + str(a)
+			self.texto = str(b) +' - x ' + ' = ' + str(a)
 			respuesta = b - a
 		#ADICION
 		elif nivel == 2:
 			a = random.randint(1,10)
 			b = random.randint(1,10)
-			self.texto = str(a) +' + ? ' + ' = ' + str(b)
+			self.texto = str(a) +' + x ' + ' = ' + str(b)
 			respuesta = b - a
-		#Multiplicacion entera
+		#Multiplicacion entera positiva
 		elif nivel == 3:
 			a = random.randint(2,10)
 			b = random.randint(1,10)*a
-			self.texto = str(a) +' x  ? ' + ' = ' + str(b)
+			self.texto = str(a) +' x ' + ' = ' + str(b)
 			respuesta = b//a
-		#Division entera	
+		#Multiplicacion entera negativa
 		elif nivel == 4:
 			a = random.randint(2,10)
-			b = random.randint(1,10)*a
-			self.texto = str(b) +' /  ? ' + ' = ' + str(a)
-			respuesta = b//a
-
-		#Combinacion producto
+			b = -random.randint(1,10)*a
+			self.texto = str(a) +' x ' + ' = ' + str(b)
+			respuesta = - (b//a)
+		#Division entera positiva	
 		elif nivel == 5:
-			a = random.randint(2,10)
-			b = random.randint(1,10)
-			c = random.randint(1,10)*a
-			self.texto = str(a) + '(? + ' + str(b) + ') = ' + str(c)
-			respuesta = c//a - b
-		#Combinacion division
+			a = random.randint(1,10)
+			b = random.randint(2,10)
+			self.texto = ' x/' +str(b) + ' = ' + str(a)
+			respuesta = b*a
+
+		#adicion y producto
 		elif nivel == 6:
 			a = random.randint(2,10)
 			b = random.randint(1,10)
 			c = random.randint(1,10)*a
-			self.texto = str(c) + '/(? + ' + str(b) + ') = ' + str(a)
+			self.texto = str(a) + '(x  + ' + str(b) + ') = ' + str(c)
 			respuesta = c//a - b
+		#añadir el nivel 6 con negativos
+		#adicion y division
+		elif nivel == 7:
+			a = random.randint(1,10)
+			b = random.randint(1,10)
+			c = random.randint(2,10)
+			self.texto = '(x + ' + str(b) + ')/'+str(c)+'= ' + str(a)
+			respuesta = a*c - b
+		#añadir el nivel 7 con negativos
 		else:
 			#Suma de FRACCIONES
 			a = random.randint(1,10)
