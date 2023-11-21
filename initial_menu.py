@@ -23,7 +23,7 @@ class Imenu:
 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_i]:
-			self.create_overworld(0,7)
+			self.create_overworld(0,11)
 		elif keys[pygame.K_d]:
 			self.create_credits(self.surface)
 

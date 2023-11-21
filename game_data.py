@@ -7,7 +7,7 @@ level_0 = {
 	'enemies':'niveles/new_level0/new_level0_enemies.csv',
 	'ecuacion':'niveles/new_level0/new_level0_ecuacion.csv',
 	'constrains':'niveles/new_level0/new_level0_constraints.csv',
-	'node_pos':(200,300),
+	'node_pos':(200,200),
 	'node_graphics':'imagenes/compu_nivel_1.png',
 	'unlock':1,
 	'background': 'imagenes/fondos/university.jpeg'	
@@ -21,7 +21,7 @@ level_1= {
 	'enemies':'niveles/level1_csv/level1_enemies.csv',
 	'ecuacion':'niveles/level1_csv/level1_ecuacion.csv',
 	'constrains':'niveles/level1_csv/level1_constraints.csv',
-	'node_pos':(300,600),
+	'node_pos':(450,200),
 	'node_graphics':'imagenes/compu_nivel_2.png',
 	'unlock':2,
 	'background': 'imagenes/fondos/university.jpeg'		
@@ -35,7 +35,7 @@ level_2 = {
 	'enemies':'niveles/level2_csv/level2_enemies.csv',
 	'ecuacion':'niveles/level2_csv/level2_ecuacion.csv',
 	'constrains':'niveles/level2_csv/level2_constraints.csv',
-	'node_pos':(450,300),
+	'node_pos':(700,200),
 	'node_graphics':'imagenes/compu_nivel_3.png',
 	'unlock':3,
 	'background': 'imagenes/fondos/university.jpeg'		
@@ -49,7 +49,7 @@ level_3 = {
 	'enemies':'niveles/level3_csv/level3_enemies.csv',
 	'ecuacion':'niveles/level3_csv/level3_ecuacion.csv',
 	'constrains':'niveles/level3_csv/level3_constraints.csv',
-	'node_pos':(550,600),
+	'node_pos':(950,200),
 	'node_graphics':'imagenes/compu_nivel_4.png',
 	'unlock':4,
 	'background': 'imagenes/fondos/university2.jpeg'	
@@ -63,7 +63,7 @@ level_4 = {
 	'enemies':'niveles/level4_csv/level4_enemies.csv',
 	'ecuacion':'niveles/level4_csv/level4_ecuacion.csv',
 	'constrains':'niveles/level4_csv/level4_constraints.csv',
-	'node_pos':(700,300),
+	'node_pos':(950,400),
 	'node_graphics':'imagenes/compu_nivel_5.png',
 	'unlock':5,
 	'background': 'imagenes/fondos/university2.jpeg'	
@@ -77,7 +77,7 @@ level_5 = {
 	'enemies':'niveles/level5_csv/level5_enemies.csv',
 	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
-	'node_pos':(800,600),
+	'node_pos':(950,600),
 	'node_graphics':'imagenes/compu_nivel_6.png',
 	'unlock':6,
 	'background': 'imagenes/fondos/base.jpeg'	
@@ -91,7 +91,7 @@ level_6 = {
 	'enemies':'niveles/level5_csv/level5_enemies.csv',
 	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
-	'node_pos':(950,300),
+	'node_pos':(700,600),
 	'node_graphics':'imagenes/compu_nivel_7.png',
 	'unlock':6,
 	'background': 'imagenes/fondos/base.jpeg'
@@ -105,12 +105,67 @@ level_7 = {
 	'enemies':'niveles/level5_csv/level5_enemies.csv',
 	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
-	'node_pos':(1050,600),
+	'node_pos':(450,600),
 	'node_graphics':'imagenes/compu_nivel_8.png',
-	'unlock':7,
+	'unlock':8,
 	'background': 'imagenes/fondos/bar.jpeg'
 }
 
+level_8 = {
+	'terrain':'niveles/level5_csv/level5_terrain.csv',
+	'respuestas_r':'niveles/level5_csv/level5_respuestas_r.csv',
+	'respuestas_l':'niveles/level5_csv/level5_respuestas_l.csv',
+	'player':'niveles/level5_csv/level5_player.csv',
+	'enemies':'niveles/level5_csv/level5_enemies.csv',
+	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
+	'constrains':'niveles/level5_csv/level5_constraints.csv',
+	'node_pos':(200,600),
+	'node_graphics':'imagenes/compu_nivel_9.png',
+	'unlock':9,
+	'background': 'imagenes/fondos/bar.jpeg'
+}
+
+level_9 = {
+	'terrain':'niveles/level5_csv/level5_terrain.csv',
+	'respuestas_r':'niveles/level5_csv/level5_respuestas_r.csv',
+	'respuestas_l':'niveles/level5_csv/level5_respuestas_l.csv',
+	'player':'niveles/level5_csv/level5_player.csv',
+	'enemies':'niveles/level5_csv/level5_enemies.csv',
+	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
+	'constrains':'niveles/level5_csv/level5_constraints.csv',
+	'node_pos':(200,400),
+	'node_graphics':'imagenes/compu_nivel_10.png',
+	'unlock':10,
+	'background': 'imagenes/fondos/bar.jpeg'
+}
+
+level_10= {
+	'terrain':'niveles/level5_csv/level5_terrain.csv',
+	'respuestas_r':'niveles/level5_csv/level5_respuestas_r.csv',
+	'respuestas_l':'niveles/level5_csv/level5_respuestas_l.csv',
+	'player':'niveles/level5_csv/level5_player.csv',
+	'enemies':'niveles/level5_csv/level5_enemies.csv',
+	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
+	'constrains':'niveles/level5_csv/level5_constraints.csv',
+	'node_pos':(450,400),
+	'node_graphics':'imagenes/compu_nivel_11.png',
+	'unlock':11,
+	'background': 'imagenes/fondos/bar.jpeg'
+}
+
+level_11 = {
+	'terrain':'niveles/level5_csv/level5_terrain.csv',
+	'respuestas_r':'niveles/level5_csv/level5_respuestas_r.csv',
+	'respuestas_l':'niveles/level5_csv/level5_respuestas_l.csv',
+	'player':'niveles/level5_csv/level5_player.csv',
+	'enemies':'niveles/level5_csv/level5_enemies.csv',
+	'ecuacion':'niveles/level5_csv/level5_ecuacion.csv',
+	'constrains':'niveles/level5_csv/level5_constraints.csv',
+	'node_pos':(700,400),
+	'node_graphics':'imagenes/compu_nivel_12.png',
+	'unlock':11,
+	'background': 'imagenes/fondos/bar.jpeg'
+}
 
 levels = { 0:level_0,
            1:level_1,
@@ -119,7 +174,11 @@ levels = { 0:level_0,
            4:level_4,
            5:level_5,
            6:level_6,
-           7:level_7}
+           7:level_7,
+           8:level_8,
+           9:level_9,
+           10:level_10,
+           11:level_11}
 
 #Configuracion de la pantalla
 tile_size = 64

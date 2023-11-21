@@ -18,59 +18,88 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.image.blit(self.miTexto, [20,(w*137/192)/2-h/2])
 
 	def generator(self,nivel):
-		#SUMA 
+		#ADICION POSITIVA
 		if nivel == 0:
 			a = random.randint(1,10)
 			b = a + random.randint(1,10)
 			self.texto = str(a) +' + x ' + ' = ' + str(b)
 			respuesta = b - a
-		#RESTA
+		#ADICION NEGATIVA
 		elif nivel == 1:
 			a = random.randint(1,10)
 			b = a + random.randint(1,10)
 			self.texto = str(b) +' - x ' + ' = ' + str(a)
 			respuesta = b - a
-		#ADICION
+		#ADICION COMBINADA
 		elif nivel == 2:
 			a = random.randint(1,10)
 			b = random.randint(1,10)
 			self.texto = str(a) +' + x ' + ' = ' + str(b)
 			respuesta = b - a
-		#Multiplicacion entera positiva
+		#MULTIPLICACION ENTERA POSITIVA
 		elif nivel == 3:
 			a = random.randint(2,10)
 			b = random.randint(1,10)*a
 			self.texto = str(a) +' x ' + ' = ' + str(b)
 			respuesta = b//a
-		#Multiplicacion entera negativa
+		#MULTIPLICACION ENTERA NEGATIVA (ERROR)
 		elif nivel == 4:
 			a = random.randint(2,10)
 			b = -random.randint(1,10)*a
 			self.texto = str(a) +' x ' + ' = ' + str(b)
-			respuesta = - (b//a)
-		#Division entera positiva	
+			respuesta =  (b//a)
+		#DIVISION ENTERA COMBINADA	
 		elif nivel == 5:
 			a = random.randint(1,10)
 			b = random.randint(2,10)
 			self.texto = ' x/' +str(b) + ' = ' + str(a)
 			respuesta = b*a
 
-		#adicion y producto
+		#ADICION Y PRODUCTO POSITIVO
 		elif nivel == 6:
+			a = random.randint(2,10)
+			c = random.randint(1,10)*a
+			b = c//a + random.randint(1,10)
+			self.texto = str(a) + '(x  + ' + str(b) + ') = ' + str(c)
+			respuesta = c//a - b
+		#ADICION Y PRODUCTO NEGATIVO
+		elif nivel == 7:
+			a = random.randint(2,10)
+			b = random.randint(1,10)
+			c = random.randint(1,10)*a
+			self.texto = str(a) + '('+ str(b) + ' - x) = ' + str(c)
+			respuesta = b - c//a
+		#ADICION Y PRODUCTO COMBINADO
+		elif nivel == 8:
 			a = random.randint(2,10)
 			b = random.randint(1,10)
 			c = random.randint(1,10)*a
 			self.texto = str(a) + '(x  + ' + str(b) + ') = ' + str(c)
 			respuesta = c//a - b
-		#añadir el nivel 6 con negativos
-		#adicion y division
-		elif nivel == 7:
+		#ADICION Y DIVISION POSITIVO
+		elif nivel == 9:
+			a = random.randint(1,10)
+			c = random.randint(2,10)
+			b = a*c + random.randint(1,10)
+			self.texto = '('+ str(b) + ' + x)/'+str(c)+' = ' + str(a)
+			respuesta = a*c - b
+		#ADICION Y DIVISION NEGATIVO
+		elif nivel == 10:
 			a = random.randint(1,10)
 			b = random.randint(1,10)
 			c = random.randint(2,10)
-			self.texto = '(x + ' + str(b) + ')/'+str(c)+'= ' + str(a)
+			self.texto = '('+ str(b) + ' - x)/'+str(c)+' = ' + str(a)
+			respuesta = b - a*c
+		#ADICION Y DIVISION COMBINADO
+		elif nivel == 11:
+			a = random.randint(1,10)
+			c = random.randint(2,10)
+			b = random.randint(1,10)
+			self.texto = '('+ str(b) + ' + x)/'+str(c)+' = ' + str(a)
 			respuesta = a*c - b
+
 		#añadir el nivel 7 con negativos
+		'''
 		else:
 			#Suma de FRACCIONES
 			a = random.randint(1,10)
@@ -79,7 +108,7 @@ class Ecuacion(pygame.sprite.Sprite):
 			d = random.randint(2,10)
 			self.texto = str(a)+'/'+str(b)+'+'+str(c)+'/'+str(d)+'= ?'
 			respuesta = str(a*d + b*c)+'/'+ str(c*d)
-
+        '''
 		return str(respuesta)
 
 	def update(self):
