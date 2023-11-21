@@ -59,14 +59,14 @@ class Ecuacion(pygame.sprite.Sprite):
 		elif nivel == 6:
 			a = random.randint(2,10)
 			c = random.randint(1,10)*a
-			b = c//a + random.randint(1,10)
+			b = c//a - random.randint(0,c//a)
 			self.texto = str(a) + '(x  + ' + str(b) + ') = ' + str(c)
 			respuesta = c//a - b
 		#ADICION Y PRODUCTO NEGATIVO
 		elif nivel == 7:
 			a = random.randint(2,10)
-			b = random.randint(1,10)
 			c = random.randint(1,10)*a
+			b = c//a + random.randint(1,10)
 			self.texto = str(a) + '('+ str(b) + ' - x) = ' + str(c)
 			respuesta = b - c//a
 		#ADICION Y PRODUCTO COMBINADO
@@ -79,8 +79,8 @@ class Ecuacion(pygame.sprite.Sprite):
 		#ADICION Y DIVISION POSITIVO
 		elif nivel == 9:
 			a = random.randint(1,10)
-			c = random.randint(2,10)
-			b = a*c + random.randint(1,10)
+			c = random.randint(2,7)
+			b = a*c - random.randint(0,a*c)
 			self.texto = '('+ str(b) + ' + x)/'+str(c)+' = ' + str(a)
 			respuesta = a*c - b
 		#ADICION Y DIVISION NEGATIVO
@@ -97,18 +97,7 @@ class Ecuacion(pygame.sprite.Sprite):
 			b = random.randint(1,10)
 			self.texto = '('+ str(b) + ' + x)/'+str(c)+' = ' + str(a)
 			respuesta = a*c - b
-
-		#añadir el nivel 7 con negativos
-		'''
-		else:
-			#Suma de FRACCIONES
-			a = random.randint(1,10)
-			b = random.randint(2,10)
-			c = random.randint(1,10)
-			d = random.randint(2,10)
-			self.texto = str(a)+'/'+str(b)+'+'+str(c)+'/'+str(d)+'= ?'
-			respuesta = str(a*d + b*c)+'/'+ str(c*d)
-        '''
+			
 		return str(respuesta)
 
 	def update(self):
