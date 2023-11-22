@@ -5,17 +5,27 @@ from overworld import Overworld
 from initial_menu import Imenu
 from screen_resultados import Pantalla_resultados
 from creditos import Creditos
+from ui import UI
 
 class Game:
 	def __init__(self):
+		#Atributos
 		#self.max_level = 0
 		#self.overworld = Overworld(0,self.max_level,screen,self.create_level,self.create_initial_menu)
+		self.max_health = 100
+		self.cur_health = 50
+		self.coins = 0
+
+		# Creación del menu inicial
 		self.status = 'menu'
 		self.initial_menu = Imenu(screen, self.create_overworld,self.create_creditos)
 		self.contador = 0
 
+		# user interface
+		self.ui = UI(screen)
+
 	def create_level(self,current_level):
-		self.level = Level(screen,current_level,self.create_results)
+		self.level = Level(screen,current_level,self.create_results,self.change_coins)
 		self.status = 'level'
 
 	def create_overworld(self,current_level, new_max_level):
@@ -36,12 +46,17 @@ class Game:
 		self.status = 'creditos'
 		self.creditos = Creditos(surface,self.create_initial_menu)
 
+	def change_coins(self,amount):
+		self.coins = amount
+
 
 	def run(self):
 		if self.status == 'overworld':
 			self.overworld.run()
 		elif self.status == 'level':
 			self.level.run()
+			self.ui.show_health(self.cur_health,self.max_health)
+			self.ui.show_coins(self.coins)
 		elif self.status == 'menu':
 			self.initial_menu.run()
 		elif self.status == 'results':

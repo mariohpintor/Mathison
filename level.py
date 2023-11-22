@@ -10,7 +10,7 @@ from support import *
 import time
 
 class Level:
-	def __init__(self,surface,current_level,create_results):
+	def __init__(self,surface,current_level,create_results,change_coins):
 		# general setup
 		self.calificacion = pygame.image.load("imagenes/manzana.png").convert_alpha()
 		self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
@@ -30,6 +30,8 @@ class Level:
 
 		self.alternancia_r = 0
 		self.alternancia_l = 0
+
+		self.change_coins = change_coins
 
 		#player 
 		player_layout = import_csv_layout(level_data['player'])
@@ -182,6 +184,7 @@ class Level:
 		if self.alternancia_r == 1 or self.alternancia_l == 1:
 			#sprite.revisar(self.ecuacion.respuesta_correcta,self.display_surface)
 			self.calificacion, self.contador_palomas, self.contador_ecuaciones = sprite.revisar(self.ecuacion.respuesta_correcta,self.contador_palomas,self.contador_ecuaciones)
+			self.change_coins(self.contador_palomas)
 			for sprite in type_sprites:
 				sprite.texto = 'x'			
 			if self.alternancia_r == 1:
