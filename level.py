@@ -21,6 +21,7 @@ class Level:
 		self.inicio = time.time()
 		self.contador_palomas = 0
 		self.contador_ecuaciones = 0
+		self.caidas = 0
 
 		#audio
 		#self.coin_sound = pygame.mixer.Sound('../clear_code/audio/effects/coin.wav')
@@ -215,9 +216,14 @@ class Level:
 			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
 
 	def check_death(self):
-		if self.player.sprite.rect.top > screen_height:
+		if self.caidas > 1 and self.player.sprite.rect.top > screen_height:
 			fin = time.time()
 			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
+		elif self.player.sprite.rect.top > screen_height:
+			self.player.sprite.get_damage()
+			self.player.sprite.direction.y = -40
+			self.caidas += 1
+
 
 	def check_win(self):
 		if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):

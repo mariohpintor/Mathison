@@ -6,6 +6,7 @@ from initial_menu import Imenu
 from screen_resultados import Pantalla_resultados
 from creditos import Creditos
 from ui import UI
+from controles import Controles
 
 class Game:
 	def __init__(self):
@@ -18,11 +19,15 @@ class Game:
 
 		# Creación del menu inicial
 		self.status = 'menu'
-		self.initial_menu = Imenu(screen, self.create_overworld,self.create_creditos)
+		self.initial_menu = Imenu(screen, self.create_overworld,self.create_creditos,self.create_controles)
 		self.contador = 0
 
 		# user interface
 		self.ui = UI(screen)
+
+	def create_controles(self):
+		self.controles = Controles(screen, self.create_initial_menu)
+		self.status = 'controles'
 
 	def create_level(self,current_level):
 		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health)
@@ -35,16 +40,16 @@ class Game:
 		self.status = 'overworld'
 
 	def create_initial_menu(self):
-		self.initial_menu = Imenu(screen,self.create_overworld,self.create_creditos)
+		self.initial_menu = Imenu(screen,self.create_overworld,self.create_creditos,self.create_controles)
 		self.status = 'menu'
 
 	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level,meta):
 		self.status = 'results'
 		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin,new_max_level,meta)
 
-	def create_creditos(self,surface):
+	def create_creditos(self):
 		self.status = 'creditos'
-		self.creditos = Creditos(surface,self.create_initial_menu)
+		self.creditos = Creditos(screen,self.create_initial_menu)
 
 	def change_coins(self,amount):
 		self.coins = amount
@@ -72,12 +77,12 @@ class Game:
 			self.initial_menu.run()
 		elif self.status == 'results':
 			self.pantalla_results.run()
-		else:
-			self.creditos.run()
-			#self.check_game_over()
+		elif self.status == 'controles':
+			self.controles.run()		
+
 
 pygame.init()
-pygame.display.set_caption("Mathison begins")
+pygame.display.set_caption("Mathison inicia")
 screen = pygame.display.set_mode((screen_width,screen_height))
 clock = pygame.time.Clock()
 
