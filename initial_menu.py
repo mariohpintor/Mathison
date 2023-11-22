@@ -3,11 +3,11 @@ from game_data import screen_width,screen_height
 
 
 class Imenu:
-	def __init__(self,surface,create_overworld,create_credits,create_controles):
+	def __init__(self,surface,create_dificultad,create_credits,create_controles):
 		self.surface = surface
 		self.create_controles = create_controles
 		self.create_credits = create_credits
-		self.create_overworld = create_overworld
+		self.create_dificultad = create_dificultad
 		self.main_font = pygame.font.SysFont("Courier", 100)
 		self.sub_font = pygame.font.SysFont("Courier", 40)
 
@@ -26,7 +26,7 @@ class Imenu:
 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_i]:
-			self.create_overworld(0,11)
+			self.create_dificultad()
 		elif keys[pygame.K_d]:
 			self.create_credits()
 		elif keys[pygame.K_c]:

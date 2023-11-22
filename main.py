@@ -7,6 +7,7 @@ from screen_resultados import Pantalla_resultados
 from creditos import Creditos
 from ui import UI
 from controles import Controles
+from dificultad import Dificultad
 
 class Game:
 	def __init__(self):
@@ -25,6 +26,10 @@ class Game:
 		# user interface
 		self.ui = UI(screen)
 
+	def create_dificultad(self):
+		self.dificultad = Dificultad(screen,self.create_initial_menu,self.create_overworld)
+		self.status = 'dificultad'
+
 	def create_controles(self):
 		self.controles = Controles(screen, self.create_initial_menu)
 		self.status = 'controles'
@@ -40,7 +45,7 @@ class Game:
 		self.status = 'overworld'
 
 	def create_initial_menu(self):
-		self.initial_menu = Imenu(screen,self.create_overworld,self.create_creditos,self.create_controles)
+		self.initial_menu = Imenu(screen,self.create_dificultad,self.create_creditos,self.create_controles)
 		self.status = 'menu'
 
 	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level,meta):
@@ -78,7 +83,9 @@ class Game:
 		elif self.status == 'results':
 			self.pantalla_results.run()
 		elif self.status == 'controles':
-			self.controles.run()		
+			self.controles.run()
+		elif self.status == 'dificultad':
+			self.dificultad.run()	
 
 
 pygame.init()
