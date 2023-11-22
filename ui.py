@@ -4,8 +4,8 @@ class UI():
 	def __init__(self, surface):
 
 		self.display_surface = surface
-		self.health_bar = pygame.image.load('../clear_code/graphics/ui/health_bar.png')
-		self.coin = pygame.image.load('../clear_code/graphics/ui/coin.png')
+		self.health_bar = pygame.image.load('../clear_code/graphics/ui/health_bar.png').convert_alpha()
+		self.coin = pygame.image.load('../clear_code/graphics/ui/coin.png').convert_alpha()
 		self.coin_rect = self.coin.get_rect(topleft = (1000,100))
 		self.health_bar_topleft =(1033,78)
 		self.bar_height = 4

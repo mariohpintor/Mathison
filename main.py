@@ -13,7 +13,7 @@ class Game:
 		#self.max_level = 0
 		#self.overworld = Overworld(0,self.max_level,screen,self.create_level,self.create_initial_menu)
 		self.max_health = 100
-		self.cur_health = 50
+		self.cur_health = 100
 		self.coins = 0
 
 		# Creación del menu inicial
@@ -25,7 +25,7 @@ class Game:
 		self.ui = UI(screen)
 
 	def create_level(self,current_level):
-		self.level = Level(screen,current_level,self.create_results,self.change_coins)
+		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health)
 		self.status = 'level'
 
 	def create_overworld(self,current_level, new_max_level):
@@ -49,6 +49,16 @@ class Game:
 	def change_coins(self,amount):
 		self.coins = amount
 
+	def change_health(self,amount):
+		self.cur_health += amount
+
+	def check_game_over(self):
+		if self.cur_health <= 0:
+			self.cur_health = 100
+			self.coins = 0
+			#self.max_level = 0
+			self.pantalla_results.run()
+			self.status = 'results'
 
 	def run(self):
 		if self.status == 'overworld':
@@ -63,6 +73,7 @@ class Game:
 			self.pantalla_results.run()
 		else:
 			self.creditos.run()
+			#self.check_game_over()
 
 pygame.init()
 pygame.display.set_caption("Mathison begins")

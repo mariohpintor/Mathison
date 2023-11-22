@@ -10,7 +10,7 @@ from support import *
 import time
 
 class Level:
-	def __init__(self,surface,current_level,create_results,change_coins):
+	def __init__(self,surface,current_level,create_results,change_coins,change_health):
 		# general setup
 		self.calificacion = pygame.image.load("imagenes/manzana.png").convert_alpha()
 		self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
@@ -37,7 +37,7 @@ class Level:
 		player_layout = import_csv_layout(level_data['player'])
 		self.player = pygame.sprite.GroupSingle()
 		self.goal = pygame.sprite.GroupSingle()
-		self.player_setup(player_layout)
+		self.player_setup(player_layout,change_health)
 
 		#ecuacion
 		ecuacion_layout = import_csv_layout(level_data['ecuacion'])
@@ -101,13 +101,13 @@ class Level:
 
 		return sprite_group	
 
-	def player_setup(self,layout):
+	def player_setup(self,layout,change_health):
 		for row_index, row in enumerate(layout):
 			for col_index, val in enumerate(row):
 				x = col_index*tile_size
 				y = row_index*tile_size
 				if val == '0':
-					sprite = Player((x,y))
+					sprite = Player((x,y),change_health)
 					self.player.add(sprite)
 				if val == '1':
 					hat_surface = pygame.image.load('imagenes/hat.png').convert_alpha()
@@ -222,6 +222,20 @@ class Level:
 			fin = time.time()
 			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
 
+	def check_enemy_collisions(self):
+		enemy_collisions  = pygame.sprite.spritecollide(self.player.sprite,self.enemy_sprites,False)
+
+		if enemy_collisions:
+			for enemy in enemy_collisions:
+				enemy_center = enemy.rect.centery
+				enemy_top = enemy.rect.top 
+				player_bottom = self.player.sprite.rect.bottom
+				if enemy_top < player_bottom < enemy_center and self.player.sprite.direction.y >= 0:
+					self.player.sprite.direction.y = -15
+					enemy.kill()
+				else:
+					self.player.sprite.get_damage()
+
 	def run(self):
 		fondo = pygame.image.load(levels[self.current_level]['background']).convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
@@ -265,5 +279,6 @@ class Level:
 
 		self.check_death()
 		self.check_win()
+		self.check_enemy_collisions()
 
 
