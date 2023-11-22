@@ -57,7 +57,7 @@ class Game:
 			self.cur_health = 100
 			self.coins = 0
 			#self.max_level = 0
-			self.pantalla_results.run()
+			#self.pantalla_results.run()
 			self.status = 'results'
 
 	def run(self):
@@ -67,6 +67,7 @@ class Game:
 			self.level.run()
 			self.ui.show_health(self.cur_health,self.max_health)
 			self.ui.show_coins(self.coins)
+			self.check_game_over()
 		elif self.status == 'menu':
 			self.initial_menu.run()
 		elif self.status == 'results':

@@ -22,6 +22,9 @@ class Level:
 		self.contador_palomas = 0
 		self.contador_ecuaciones = 0
 
+		#audio
+		#self.coin_sound = pygame.mixer.Sound('../clear_code/audio/effects/coin.wav')
+
 		# overworld connection
 		self.create_results = create_results
 		self.current_level = current_level
