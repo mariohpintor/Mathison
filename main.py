@@ -20,7 +20,7 @@ class Game:
 
 		# Creación del menu inicial
 		self.status = 'menu'
-		self.initial_menu = Imenu(screen, self.create_overworld,self.create_creditos,self.create_controles)
+		self.initial_menu = Imenu(screen, self.create_dificultad,self.create_creditos,self.create_controles)
 		self.contador = 0
 
 		# user interface
@@ -38,7 +38,7 @@ class Game:
 		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health)
 		self.status = 'level'
 
-	def create_overworld(self,current_level, new_max_level):
+	def create_overworld(self,current_level,new_max_level):
 		#if new_max_level > self.max_level:
 			#self.max_level = new_max_level
 		self.overworld = Overworld(current_level,new_max_level,screen,self.create_level,self.create_initial_menu)
