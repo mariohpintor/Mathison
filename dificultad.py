@@ -25,11 +25,11 @@ class Dificultad:
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_e]:
 			self.create_overworld(0,11)
-		elif keys[pygame.K_f]:
+		if keys[pygame.K_f]:
 			self.create_overworld(0,0)
-		elif keys[pygame.K_n]:
+		if keys[pygame.K_n]:
 			self.create_overworld(0,0)
-		elif keys[pygame.K_z]:
+		if keys[pygame.K_z]:
 			self.create_initial_menu()
 
 		fondo = pygame.image.load("imagenes/fondos/computer_evolution.jpeg").convert_alpha()

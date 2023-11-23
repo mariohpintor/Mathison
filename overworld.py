@@ -34,12 +34,12 @@ class Icon(pygame.sprite.Sprite):
 		self.rect.center = self.pos
 
 class Overworld:
-	def __init__(self, start_level,max_level,surface,create_level,create_initial_menu):
+	def __init__(self, start_level,max_level,surface,create_level,create_dificultad):
 		self.display_surface = surface
 		self.max_level = max_level
 		self.current_level = start_level
 		self.create_level = create_level
-		self.create_initial_menu = create_initial_menu
+		self.create_dificultad = create_dificultad
 
 		#movement logic
 		self.moving = False
@@ -87,7 +87,7 @@ class Overworld:
 			elif keys[pygame.K_SPACE]:
 				self.create_level(self.current_level)
 			elif keys[pygame.K_r]:
-				self.create_initial_menu()		
+				self.create_dificultad()		
 
 	def get_movement_data(self,target):
 		start = pygame.math.Vector2(self.nodes.sprites()[self.current_level].rect.center)
@@ -112,7 +112,7 @@ class Overworld:
 		self.main_font = pygame.font.SysFont("Arial Rounded MT Bold", 28)
 		instrucciones1 = self.main_font.render('Presiona [SPACE] para seleccionar nivel y muevete con [LEFT] y [RIGHT]',0,'black')
 		instrucciones1_rect = instrucciones1.get_rect(center=(screen_width/2,60))
-		instrucciones2 = self.main_font.render('Player se mueve con las flechas del teclado y con [A] selecciona la respuesta',0,'black')
+		instrucciones2 = self.main_font.render('Regresar con [R]',0,'black')
 		instrucciones2_rect = instrucciones2.get_rect(center=(screen_width/2,screen_height-100))
 		instrucciones3 = self.main_font.render('Para avanzar de nivel: ¡Llega al final y ten 5 respuestas correctas!',0,'black')
 		instrucciones3_rect = instrucciones3.get_rect(center=(screen_width/2,screen_height-50))
