@@ -17,6 +17,7 @@ class Controles:
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_z]:
 			self.create_initial_menu()
+			print('z')
 
 
 		controls = pygame.image.load("imagenes/controles.png").convert_alpha()

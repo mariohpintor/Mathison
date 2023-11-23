@@ -28,6 +28,7 @@ class Creditos:
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_z]:
 			self.create_initial_menu()
+			print('z')
 
 		self.surface.blit(fondo,(0,0))
 		self.surface.blit(yo,yo_rect)

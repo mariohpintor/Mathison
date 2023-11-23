@@ -10,7 +10,7 @@ from support import *
 import time
 
 class Level:
-	def __init__(self,surface,current_level,create_results,change_coins,change_health):
+	def __init__(self,surface,current_level,create_results,change_coins,change_health,check_game_over):
 		# general setup
 		self.calificacion = pygame.image.load("imagenes/manzana.png").convert_alpha()
 		self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
@@ -36,6 +36,7 @@ class Level:
 		self.alternancia_l = 0
 
 		self.change_coins = change_coins
+		self.check_game_over = check_game_over
 
 		#player 
 		player_layout = import_csv_layout(level_data['player'])
@@ -223,7 +224,9 @@ class Level:
 			self.player.sprite.get_damage()
 			self.player.sprite.direction.y = -40
 			self.caidas += 1
-
+		if self.check_game_over():
+			fin = time.time()
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
 
 	def check_win(self):
 		if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):

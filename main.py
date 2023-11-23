@@ -35,7 +35,7 @@ class Game:
 		self.status = 'controles'
 
 	def create_level(self,current_level):
-		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health)
+		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health,self.check_game_over)
 		self.status = 'level'
 
 	def create_overworld(self,current_level,new_max_level):
@@ -66,9 +66,9 @@ class Game:
 		if self.cur_health <= 0:
 			self.cur_health = 100
 			self.coins = 0
-			#self.max_level = 0
-			#self.pantalla_results.run()
-			self.status = 'results'
+			return True
+		else:
+			return False
 
 	def run(self):
 		if self.status == 'overworld':
@@ -77,7 +77,7 @@ class Game:
 			self.level.run()
 			self.ui.show_health(self.cur_health,self.max_health)
 			self.ui.show_coins(self.coins)
-			self.check_game_over()
+			#self.check_game_over()
 		elif self.status == 'menu':
 			self.initial_menu.run()
 		elif self.status == 'results':

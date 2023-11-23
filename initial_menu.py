@@ -27,10 +27,14 @@ class Imenu:
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_i]:
 			self.create_dificultad()
-		elif keys[pygame.K_d]:
+			print('i')
+		if keys[pygame.K_d]:
 			self.create_credits()
-		elif keys[pygame.K_c]:
+			print('d')
+		if keys[pygame.K_c]:
 			self.create_controles()
+			print('c')
+
 
 		fondo = pygame.image.load("imagenes/fondos/base2.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
