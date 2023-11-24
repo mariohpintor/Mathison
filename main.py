@@ -12,13 +12,9 @@ from dificultad import Dificultad
 class Game:
 	def __init__(self):
 		#Atributos
-		#self.max_level = 0
-		#self.overworld = Overworld(0,self.max_level,screen,self.create_level,self.create_initial_menu)
 		self.max_health = 100
 		self.cur_health = 100
 		self.coins = 0
-
-		# Creación del menu inicial
 		self.status = 'menu'
 		self.initial_menu = Imenu(screen, self.create_dificultad,self.create_creditos,self.create_controles)
 		self.contador = 0
@@ -34,23 +30,21 @@ class Game:
 		self.controles = Controles(screen, self.create_initial_menu)
 		self.status = 'controles'
 
-	def create_level(self,current_level):
-		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health,self.check_game_over)
+	def create_level(self,current_level,nivel_dificultad):
+		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health,self.check_game_over,nivel_dificultad)
 		self.status = 'level'
 
-	def create_overworld(self,current_level,new_max_level):
-		#if new_max_level > self.max_level:
-			#self.max_level = new_max_level
-		self.overworld = Overworld(current_level,new_max_level,screen,self.create_level,self.create_dificultad)
+	def create_overworld(self,current_level,new_max_level,nivel_dificultad):
+		self.overworld = Overworld(current_level,new_max_level,screen,self.create_level,self.create_dificultad,nivel_dificultad)
 		self.status = 'overworld'
 
 	def create_initial_menu(self):
 		self.initial_menu = Imenu(screen,self.create_dificultad,self.create_creditos,self.create_controles)
 		self.status = 'menu'
 
-	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level,meta):
+	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level,meta,nivel_dificultad):
 		self.status = 'results'
-		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin,new_max_level,meta)
+		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin,new_max_level,meta,nivel_dificultad)
 
 	def create_creditos(self):
 		self.status = 'creditos'

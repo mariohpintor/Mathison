@@ -24,15 +24,15 @@ class Dificultad:
 
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_e]:
-			self.create_overworld(0,11)
+			self.create_overworld(0,11,0)
 		if keys[pygame.K_f]:
-			self.create_overworld(0,0)
+			self.create_overworld(0,0,1)
 		if keys[pygame.K_n]:
-			self.create_overworld(0,0)
+			self.create_overworld(0,0,2)
 		if keys[pygame.K_z]:
 			self.create_initial_menu()
 
-		fondo = pygame.image.load("imagenes/fondos/computer_evolution.jpeg").convert_alpha()
+		fondo = pygame.image.load("imagenes/fondos/dificulty.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.surface.blit(fondo,(0,0))
 		pygame.draw.rect(self.surface, (0, 0, 0),titulo_rect)

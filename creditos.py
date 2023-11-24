@@ -22,7 +22,7 @@ class Creditos:
 		correo2_rect = correo2.get_rect(center=(screen_width/2,screen_height/2+300))
 		instruccion_rect = instruccion.get_rect(center=(screen_width/2,screen_height/2+400))
 
-		fondo = pygame.image.load("imagenes/fondos/base.jpeg").convert_alpha()
+		fondo = pygame.image.load("imagenes/fondos/base2.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 
 		keys = pygame.key.get_pressed()

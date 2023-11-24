@@ -10,13 +10,15 @@ from support import *
 import time
 
 class Level:
-	def __init__(self,surface,current_level,create_results,change_coins,change_health,check_game_over):
+	def __init__(self,surface,current_level,create_results,change_coins,change_health,check_game_over,nivel_dificultad):
 		# general setup
 		self.calificacion = pygame.image.load("imagenes/manzana.png").convert_alpha()
-		self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
+		self.calificacion.set_alpha(0)
+		#self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
 		self.display_surface = surface
 		self.world_shift = 0
 		self.meta = False
+		self.nivel_dificultad = nivel_dificultad
 
 		self.inicio = time.time()
 		self.contador_palomas = 0
@@ -115,7 +117,8 @@ class Level:
 					sprite = Player((x,y),change_health)
 					self.player.add(sprite)
 				if val == '1':
-					hat_surface = pygame.image.load('imagenes/hat.png').convert_alpha()
+					hat_surface = pygame.image.load('imagenes/manzana.png').convert_alpha()
+					hat_surface = pygame.transform.scale(hat_surface, (60,60))
 					sprite = StaticTile(tile_size,x,y,hat_surface)
 					self.goal.add(sprite)
 	
@@ -219,20 +222,20 @@ class Level:
 	def check_death(self):
 		if self.caidas > 1 and self.player.sprite.rect.top > screen_height:
 			fin = time.time()
-			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta,self.nivel_dificultad)
 		elif self.player.sprite.rect.top > screen_height:
 			self.player.sprite.get_damage()
 			self.player.sprite.direction.y = -40
 			self.caidas += 1
 		if self.check_game_over():
 			fin = time.time()
-			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta,self.nivel_dificultad)
 
 	def check_win(self):
 		if pygame.sprite.spritecollide(self.player.sprite,self.goal,False):
 			self.meta = True
 			fin = time.time()
-			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
+			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta,self.nivel_dificultad)
 
 	def check_enemy_collisions(self):
 		enemy_collisions  = pygame.sprite.spritecollide(self.player.sprite,self.enemy_sprites,False)

@@ -80,7 +80,7 @@ level_5 = {
 	'node_pos':(950,600),
 	'node_graphics':'imagenes/compu_nivel_6.png',
 	'unlock':6,
-	'background': 'imagenes/fondos/base.jpeg'	
+	'background': 'imagenes/fondos/university2.jpeg'	
 }
 
 level_6 = {
@@ -94,7 +94,7 @@ level_6 = {
 	'node_pos':(700,600),
 	'node_graphics':'imagenes/compu_nivel_7.png',
 	'unlock':6,
-	'background': 'imagenes/fondos/base.jpeg'
+	'background': 'imagenes/fondos/university3.jpeg'
 }
 
 level_7 = {
@@ -108,7 +108,7 @@ level_7 = {
 	'node_pos':(450,600),
 	'node_graphics':'imagenes/compu_nivel_8.png',
 	'unlock':8,
-	'background': 'imagenes/fondos/bar.jpeg'
+	'background': 'imagenes/fondos/university3.jpeg'
 }
 
 level_8 = {
@@ -122,7 +122,7 @@ level_8 = {
 	'node_pos':(200,600),
 	'node_graphics':'imagenes/compu_nivel_9.png',
 	'unlock':9,
-	'background': 'imagenes/fondos/bar.jpeg'
+	'background': 'imagenes/fondos/university4.jpeg'
 }
 
 level_9 = {
@@ -136,7 +136,7 @@ level_9 = {
 	'node_pos':(200,400),
 	'node_graphics':'imagenes/compu_nivel_10.png',
 	'unlock':10,
-	'background': 'imagenes/fondos/bar.jpeg'
+	'background': 'imagenes/fondos/university4.jpeg'
 }
 
 level_10= {
@@ -150,7 +150,7 @@ level_10= {
 	'node_pos':(450,400),
 	'node_graphics':'imagenes/compu_nivel_11.png',
 	'unlock':11,
-	'background': 'imagenes/fondos/bar.jpeg'
+	'background': 'imagenes/fondos/nivel11.jpeg'
 }
 
 level_11 = {
@@ -163,8 +163,8 @@ level_11 = {
 	'constrains':'niveles/level5_csv/level5_constraints.csv',
 	'node_pos':(700,400),
 	'node_graphics':'imagenes/compu_nivel_12.png',
-	'unlock':11,
-	'background': 'imagenes/fondos/bar.jpeg'
+	'unlock':12,
+	'background': 'imagenes/fondos/nivel12.jpeg'
 }
 
 levels = { 0:level_0,
@@ -182,5 +182,7 @@ levels = { 0:level_0,
 
 #Configuracion de la pantalla
 tile_size = 64
-screen_width = tile_size*20
-screen_height = 14*tile_size
+screen_width = tile_size*20 #1280
+screen_height = 14*tile_size #896
+
+#ratio = 1.4..

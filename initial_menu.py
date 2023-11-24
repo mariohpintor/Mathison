@@ -15,13 +15,10 @@ class Imenu:
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_i]:
 			self.create_dificultad()
-			print('i')
 		if keys[pygame.K_d]:
 			self.create_credits()
-			print('d')
 		if keys[pygame.K_c]:
 			self.create_controles()
-			print('c')
 
 	def run(self):
 		miTexto = self.main_font.render("MATHISON", 0, (255, 255, 255))
@@ -36,7 +33,7 @@ class Imenu:
 		creditos_rect = creditos_text.get_rect(center=(screen_width/2,screen_height/2+100))
 		controles_rect = controles.get_rect(center=(screen_width/2,screen_height/2+200))
 
-		fondo = pygame.image.load("imagenes/fondos/base2.jpeg").convert_alpha()
+		fondo = pygame.image.load("imagenes/fondos/cris.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.surface.blit(fondo,(0,0))
 		pygame.draw.rect(self.surface, (0, 0, 0), miTexto_rect)

@@ -17,7 +17,7 @@ class Node(pygame.sprite.Sprite):
 	def update(self):
 		if self.status == 'locked':
 			tint_surf = self.image.copy()
-			tint_surf.fill('green',None,pygame.BLEND_RGBA_MULT)
+			tint_surf.fill('blue',None,pygame.BLEND_RGBA_MULT)
 			self.image.blit(tint_surf,(0,0))
 		
 
@@ -34,12 +34,13 @@ class Icon(pygame.sprite.Sprite):
 		self.rect.center = self.pos
 
 class Overworld:
-	def __init__(self, start_level,max_level,surface,create_level,create_dificultad):
+	def __init__(self, start_level,max_level,surface,create_level,create_dificultad,nivel_dificultad):
 		self.display_surface = surface
 		self.max_level = max_level
 		self.current_level = start_level
 		self.create_level = create_level
 		self.create_dificultad = create_dificultad
+		self.nivel_dificultad = nivel_dificultad
 
 		#movement logic
 		self.moving = False
@@ -85,7 +86,7 @@ class Overworld:
 				self.current_level -= 1	
 				self.moving = True
 			elif keys[pygame.K_SPACE]:
-				self.create_level(self.current_level)
+				self.create_level(self.current_level,self.nivel_dificultad)
 			elif keys[pygame.K_r]:
 				self.create_dificultad()		
 
@@ -110,18 +111,18 @@ class Overworld:
 
 	def run(self):
 		self.main_font = pygame.font.SysFont("Arial Rounded MT Bold", 28)
-		instrucciones1 = self.main_font.render('Presiona [SPACE] para seleccionar nivel y muevete con [LEFT] y [RIGHT]',0,'black')
-		instrucciones1_rect = instrucciones1.get_rect(center=(screen_width/2,60))
-		instrucciones2 = self.main_font.render('Regresar con [R]',0,'black')
+		#instrucciones1 = self.main_font.render('Presiona [SPACE] para seleccionar nivel y muevete con [LEFT] y [RIGHT]',0,'black')
+		#instrucciones1_rect = instrucciones1.get_rect(center=(screen_width/2,60))
+		instrucciones2 = self.main_font.render('Regresar con [R]',0,'white')
 		instrucciones2_rect = instrucciones2.get_rect(center=(screen_width/2,screen_height-100))
-		instrucciones3 = self.main_font.render('Para avanzar de nivel: ¡Llega al final y ten 5 respuestas correctas!',0,'black')
-		instrucciones3_rect = instrucciones3.get_rect(center=(screen_width/2,screen_height-50))
-		fondo = pygame.image.load("imagenes/fondos/countryside2.jpeg").convert_alpha()
+		#instrucciones3 = self.main_font.render('Para avanzar de nivel: ¡Llega al final y ten 5 respuestas correctas!',0,'black')
+		#instrucciones3_rect = instrucciones3.get_rect(center=(screen_width/2,screen_height-50))
+		fondo = pygame.image.load("imagenes/fondos/mapa2.jpeg").convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
-		self.display_surface.blit(instrucciones1,instrucciones1_rect)
+		#self.display_surface.blit(instrucciones1,instrucciones1_rect)
 		self.display_surface.blit(instrucciones2,instrucciones2_rect)
-		self.display_surface.blit(instrucciones3,instrucciones3_rect)
+		#self.display_surface.blit(instrucciones3,instrucciones3_rect)
 		self.input()
 		self.update_icon_pos()
 		self.icon.update()
