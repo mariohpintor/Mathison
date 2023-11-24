@@ -21,7 +21,7 @@ class UI():
 
 	def show_coins(self,amount):
 		self.display_surface.blit(self.coin, self.coin_rect)
-		self.main_font = pygame.font.SysFont("Courier", 50)
+		self.main_font = pygame.font.SysFont("tahoma", 50)
 		coin_amount_surf = self.main_font.render(str(amount),False,'black')
 		coin_amount_rect = coin_amount_surf.get_rect(midleft = (self.coin_rect.right +4,self.coin_rect.centery))
 		self.display_surface.blit(coin_amount_surf,coin_amount_rect)

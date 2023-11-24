@@ -87,7 +87,7 @@ class Overworld:
 				self.moving = True
 			elif keys[pygame.K_SPACE]:
 				self.create_level(self.current_level,self.nivel_dificultad)
-			elif keys[pygame.K_r]:
+			elif keys[pygame.K_z]:
 				self.create_dificultad()		
 
 	def get_movement_data(self,target):
@@ -110,10 +110,10 @@ class Overworld:
 			#self.icon.sprite.rect.center = self.nodes.sprites()[self.current_level].rect.center
 
 	def run(self):
-		self.main_font = pygame.font.SysFont("Arial Rounded MT Bold", 28)
+		self.main_font = pygame.font.SysFont("tahoma", 40)
 		#instrucciones1 = self.main_font.render('Presiona [SPACE] para seleccionar nivel y muevete con [LEFT] y [RIGHT]',0,'black')
 		#instrucciones1_rect = instrucciones1.get_rect(center=(screen_width/2,60))
-		instrucciones2 = self.main_font.render('Regresar con [R]',0,'white')
+		instrucciones2 = self.main_font.render('Regresar con [Z]',0,'white')
 		instrucciones2_rect = instrucciones2.get_rect(center=(screen_width/2,screen_height-100))
 		#instrucciones3 = self.main_font.render('Para avanzar de nivel: ¡Llega al final y ten 5 respuestas correctas!',0,'black')
 		#instrucciones3_rect = instrucciones3.get_rect(center=(screen_width/2,screen_height-50))

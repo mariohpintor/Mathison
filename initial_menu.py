@@ -1,31 +1,41 @@
 import pygame
-from game_data import screen_width,screen_height
-
+from game_data import screen_width,screen_height, AMARILLO
+from controles import Controles
+from creditos import Creditos 
 
 class Imenu:
-	def __init__(self,surface,create_dificultad,create_credits,create_controles):
+	def __init__(self,surface,create_dificultad):
 		self.surface = surface
-		self.create_controles = create_controles
-		self.create_credits = create_credits
 		self.create_dificultad = create_dificultad
-		self.main_font = pygame.font.SysFont("Courier", 100)
-		self.sub_font = pygame.font.SysFont("Courier", 40)
+		self.main_font = pygame.font.SysFont("tahoma", 100)
+		self.sub_font = pygame.font.SysFont("tahoma", 40)
+
+	def create_initial_menu(self):
+		self.initial_menu = Imenu(self.surface,self.create_dificultad,self.create_creditos,self.create_controles)
+
+	def create_controles(self):
+		self.controles = Controles(self.surface,self.create_initial_menu)
+		self.controles.run()
+
+	def create_creditos(self):
+		self.creditos = Creditos(self.surface,self.create_initial_menu)
+		self.creditos.run()
 
 	def input(self):
 		keys = pygame.key.get_pressed()
 		if keys[pygame.K_i]:
 			self.create_dificultad()
 		if keys[pygame.K_d]:
-			self.create_credits()
+			self.create_creditos()
 		if keys[pygame.K_c]:
 			self.create_controles()
-
+		
 	def run(self):
 		miTexto = self.main_font.render("MATHISON", 0, (255, 255, 255))
 		subtitulo = self.sub_font.render("[Un juego de ecuaciones]", 0, (255, 255, 255))
-		nuevo_text = self.sub_font.render("Iniciar [I]", 0, (255, 255, 255))
-		creditos_text = self.sub_font.render("Créditos [D]", 0, (255, 255, 255))
-		controles = self.sub_font.render('Controles [C]', 0, (255, 255, 255))
+		nuevo_text = self.sub_font.render("Iniciar [I]", 0, AMARILLO)
+		creditos_text = self.sub_font.render("Créditos [D]", 0, AMARILLO)
+		controles = self.sub_font.render('Controles [C]', 0, AMARILLO)
 
 		miTexto_rect = miTexto.get_rect(center=(screen_width/2,screen_height/2-250))
 		subtitulo_rect = subtitulo.get_rect(center=(screen_width/2,screen_height/2-150))

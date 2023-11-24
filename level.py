@@ -14,7 +14,6 @@ class Level:
 		# general setup
 		self.calificacion = pygame.image.load("imagenes/manzana.png").convert_alpha()
 		self.calificacion.set_alpha(0)
-		#self.calificacion = pygame.transform.scale(self.calificacion,(tile_size*2,tile_size*2))
 		self.display_surface = surface
 		self.world_shift = 0
 		self.meta = False
@@ -213,12 +212,6 @@ class Level:
 			sprite = random.choice(respuetas_temporal)	
 			sprite.texto = 	str(self.ecuacion.respuesta_correcta)				
 
-	def input(self):
-		keys = pygame.key.get_pressed()
-		if keys[pygame.K_RETURN]:
-			fin = time.time()
-			self.create_results(self.display_surface,self.inicio,self.contador_palomas,self.contador_ecuaciones,fin,self.new_max_level,self.meta)
-
 	def check_death(self):
 		if self.caidas > 1 and self.player.sprite.rect.top > screen_height:
 			fin = time.time()
@@ -255,7 +248,6 @@ class Level:
 		fondo = pygame.image.load(levels[self.current_level]['background']).convert_alpha()
 		fondo = pygame.transform.scale(fondo, (screen_width,screen_height)) 
 		self.display_surface.blit(fondo,(0,0))
-		self.input()
 
 		self.scroll_x()
 

@@ -1,14 +1,14 @@
 import pygame, sys
-from game_data import screen_width,screen_height
+from game_data import screen_width,screen_height,AMARILLO 
 import csv
 
 class Pantalla_resultados:
 	def __init__(self,surface,create_overworld,inicio,palomas,ecuaciones,fin,new_max_level,meta,nivel_dificultad):
 		self.surface = surface
-		self.new_max_level = new_max_level #mientras se prueba
+		self.new_max_level = new_max_level 
 		self.create_overworld = create_overworld
-		self.main_font = pygame.font.SysFont("Arial Rounded MT Bold", 80)
-		self.sub_font = pygame.font.SysFont("Arial Rounded MT Bold", 40)
+		self.main_font = pygame.font.SysFont("tahoma", 80)
+		self.sub_font = pygame.font.SysFont("tahoma", 40)
 		self.nivel_dificultad = nivel_dificultad
 		#resultados
 		self.meta = meta
@@ -18,12 +18,12 @@ class Pantalla_resultados:
 		self.puntaje = round(self.tiempo*100 - self.palomas*10 + self.errores*100,2)
 		self.current_level = new_max_level-1
 
-		self.tiempo_text  = self.main_font.render('Tiempo: '+str(self.tiempo) +' seg.', 0, (0,0,0))
-		self.palomas_text = self.main_font.render('Correctas: '+str(self.palomas), 0, (0,0,0))
-		self.errores = self.main_font.render('Errores: '+str(self.errores), 0, (0,0,0))
-		self.puntaje = self.main_font.render('Puntaje: '+str(self.puntaje), 0, (0,0,0))
-		self.mensaje = self.sub_font.render('Presiona [Z] para regresar al mapa', 0, (0,0,0))
-		self.nivel = self.main_font.render('Nivel: '+str(self.new_max_level), 0, (0,0,0))
+		self.tiempo_text  = self.main_font.render('Tiempo: '+str(self.tiempo) +' seg.', 0, AMARILLO )
+		self.palomas_text = self.main_font.render('Correctas: '+str(self.palomas), 0, AMARILLO )
+		self.errores = self.main_font.render('Errores: '+str(self.errores), 0, AMARILLO )
+		self.puntaje = self.main_font.render('Puntaje: '+str(self.puntaje), 0, AMARILLO )
+		self.mensaje = self.sub_font.render('Presiona [Z] para regresar al mapa', 0,'white' )
+		self.nivel = self.main_font.render('Nivel: '+str(self.new_max_level), 0, AMARILLO )
 
 		if self.nivel_dificultad  == 0:
 			self.new_max_level = 11

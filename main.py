@@ -4,9 +4,9 @@ from level import Level
 from overworld import Overworld
 from initial_menu import Imenu
 from screen_resultados import Pantalla_resultados
-from creditos import Creditos
+#from creditos import Creditos
 from ui import UI
-from controles import Controles
+#from controles import Controles
 from dificultad import Dificultad
 
 class Game:
@@ -16,7 +16,7 @@ class Game:
 		self.cur_health = 100
 		self.coins = 0
 		self.status = 'menu'
-		self.initial_menu = Imenu(screen, self.create_dificultad,self.create_creditos,self.create_controles)
+		self.initial_menu = Imenu(screen, self.create_dificultad)
 		self.contador = 0
 
 		# user interface
@@ -25,11 +25,11 @@ class Game:
 	def create_dificultad(self):
 		self.dificultad = Dificultad(screen,self.create_initial_menu,self.create_overworld)
 		self.status = 'dificultad'
-
+	'''
 	def create_controles(self):
 		self.controles = Controles(screen, self.create_initial_menu)
 		self.status = 'controles'
-
+	'''
 	def create_level(self,current_level,nivel_dificultad):
 		self.level = Level(screen,current_level,self.create_results,self.change_coins,self.change_health,self.check_game_over,nivel_dificultad)
 		self.status = 'level'
@@ -39,17 +39,17 @@ class Game:
 		self.status = 'overworld'
 
 	def create_initial_menu(self):
-		self.initial_menu = Imenu(screen,self.create_dificultad,self.create_creditos,self.create_controles)
+		self.initial_menu = Imenu(screen,self.create_dificultad)
 		self.status = 'menu'
 
 	def create_results(self,surface,inicio,palomas,ecuaciones,fin,new_max_level,meta,nivel_dificultad):
 		self.status = 'results'
 		self.pantalla_results = Pantalla_resultados(surface,self.create_overworld,inicio,palomas,ecuaciones,fin,new_max_level,meta,nivel_dificultad)
-
+	'''
 	def create_creditos(self):
 		self.status = 'creditos'
 		self.creditos = Creditos(screen,self.create_initial_menu)
-
+	'''
 	def change_coins(self,amount):
 		self.coins = amount
 

@@ -9,7 +9,7 @@ class Respuestas(pygame.sprite.Sprite):
 		self.size = size
 		self.texto = str(respuesta)
 		self.color = (23, 32, 42  )
-		self.main_font = pygame.font.SysFont('arial', size - 7)
+		self.main_font = pygame.font.SysFont('tahoma', size - 7)
 		self.mitexto = self.main_font.render(self.texto, True,self.color)
         #rect and image
 		self.rect = self.mitexto.get_rect(topleft=pos)

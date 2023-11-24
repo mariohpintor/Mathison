@@ -184,5 +184,5 @@ levels = { 0:level_0,
 tile_size = 64
 screen_width = tile_size*20 #1280
 screen_height = 14*tile_size #896
-
+AMARILLO = (241, 196, 15)
 #ratio = 1.4..

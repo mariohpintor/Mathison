@@ -7,7 +7,7 @@ class Ecuacion(pygame.sprite.Sprite):
 		self.respuesta_correcta = self.generator(nivel)
 		self.color = 'red'
 		#self.texto = '¡Hola!'
-		self.main_font = pygame.font.SysFont('Arial Rounded MT Bold', size)
+		self.main_font = pygame.font.SysFont('tahoma', size)
 		self.miTexto = self.main_font.render(self.texto, 0,self.color)
 		self.rect = self.miTexto.get_rect(topleft = self.pos)
 		w = self.miTexto.get_width()
@@ -42,7 +42,7 @@ class Ecuacion(pygame.sprite.Sprite):
 			b = random.randint(1,10)*a
 			self.texto = str(a) +' x ' + ' = ' + str(b)
 			respuesta = b//a
-		#MULTIPLICACION ENTERA NEGATIVA (ERROR)
+		#MULTIPLICACION ENTERA NEGATIVA
 		elif nivel == 4:
 			a = random.randint(2,10)
 			b = -random.randint(1,10)*a

@@ -1,20 +1,20 @@
 import pygame
-from game_data import screen_width,screen_height
+from game_data import screen_width,screen_height,AMARILLO
 
 class Dificultad:
 	def __init__(self,surface,create_initial_menu,create_overworld):
 		self.surface = surface
 		self.create_initial_menu = create_initial_menu
 		self.create_overworld = create_overworld
-		self.main_font = pygame.font.SysFont("Courier", 60)
-		self.sub_font = pygame.font.SysFont("Courier", 40)
+		self.main_font = pygame.font.SysFont("tahoma", 60)
+		self.sub_font = pygame.font.SysFont("tahoma", 40)
 
 	def run(self):
 		titulo = self.main_font.render("Dificultad", 0, (255, 255, 255))
-		explorar  = self.sub_font.render("Explorar [E]", 0, (255, 255, 255))
-		facil = self.sub_font.render("Fácil [F]", 0, (255, 255, 255))
-		normal = self.sub_font.render('Normal [N]', 0, (255, 255, 255))
-		mensaje = self.sub_font.render('Presiona [Z] para regresar',0, (255, 255, 255))
+		explorar  = self.sub_font.render("Explorar [E]", 0, AMARILLO)
+		facil = self.sub_font.render("Fácil [F]", 0, AMARILLO)
+		normal = self.sub_font.render('Normal [N]', 0, AMARILLO)
+		mensaje = self.sub_font.render('Presiona [Z] para regresar',0, 'white')
 		mensaje_rect = mensaje.get_rect(center=(screen_width/2,screen_height - 50))
 
 		titulo_rect = titulo .get_rect(center=(screen_width/2,50))
