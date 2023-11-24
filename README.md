@@ -2,7 +2,13 @@
 # Mathison (videojuego)
 Videojuego estilo plataforma 2d con fines didácticos, en este juego se practica la resolución de ecuaciones de primer grado con una variable.
 
-[Jugar en navegador](https://mariohpintor.itch.io/mathison-ecuaciones "Jugar en navegador")
+Para jugar en navegador:
+
+- [version 1](https://mariohpintor.itch.io/mathison-ecuaciones "version 1")
+
+- [version 2](https://mariohpintor.itch.io/mathison "version 2")
+
+Esta última version 2 en navegador tiene algunos sonidos.
 
 ## Librerías usadas
 
@@ -21,7 +27,9 @@ Controles para navegar y jugar dentro del programa:
 
 - En el menu inicial presione la tecla indicada en corchetes []
 
-- En el mapa de niveles con las teclas flecha derecha e izquierda ponga la mazana en un nivel y presione 'SPACE' para seleccionar un nivel y 'Z' para regresar al menu.
+- En el mapa de niveles con las teclas flecha derecha e izquierda ponga la mazana en un nivel y presione 'SPACE' para seleccionar un nivel y 'Z' o 'R' para regresar al menu.
+
+- Manten presionado 'D' para ver los creditos y 'C' para ver los controles
 
 ## Niveles
 Los niveles que se tienen hasta ahora son:
