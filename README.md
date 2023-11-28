@@ -42,9 +42,9 @@ Los niveles que se tienen hasta ahora son:
 - Nivel 7: a(x + b)= c, con soluciones enteras positivas
 - Nivel 8: a(b - x)= c, con soluciones enteras negativas
 - Nivel 9: a(x + b)= c, con soluciones enteras
-- Nivel 10: a/(x + b)= c, con soluciones enteras positivas
-- Nivel 11: a/(b - x)= c, con soluciones enteras negativas
-- Nivel 12: a/(x + b)= c, con soluciones enteras
+- Nivel 10: (x + b)/a= c, con soluciones enteras positivas
+- Nivel 11: (b - x)/a= c, con soluciones enteras negativas
+- Nivel 12: (x + b)a/= c, con soluciones enteras
 
 ## Comentarios
 Corre más rápido si se descarga y se ejecuta localmente.
